@@ -60,6 +60,56 @@ namespace FX.SalesLogix.Modules.GitExtensions {
             }
         }
         
+        internal static System.Drawing.Bitmap AddImage {
+            get {
+                object obj = ResourceManager.GetObject("AddImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Files.
+        /// </summary>
+        internal static string AddText {
+            get {
+                return ResourceManager.GetString("AddText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Branch.
+        /// </summary>
+        internal static string BranchText {
+            get {
+                return ResourceManager.GetString("BranchText", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap BrowseImage {
+            get {
+                object obj = ResourceManager.GetObject("BrowseImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse Repository.
+        /// </summary>
+        internal static string BrowseText {
+            get {
+                return ResourceManager.GetString("BrowseText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checkout Branch.
+        /// </summary>
+        internal static string CheckoutText {
+            get {
+                return ResourceManager.GetString("CheckoutText", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap CommitImage {
             get {
                 object obj = ResourceManager.GetObject("CommitImage", resourceCulture);
@@ -89,6 +139,15 @@ namespace FX.SalesLogix.Modules.GitExtensions {
         internal static string GitExtensionsText {
             get {
                 return ResourceManager.GetString("GitExtensionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge Branch.
+        /// </summary>
+        internal static string MergeText {
+            get {
+                return ResourceManager.GetString("MergeText", resourceCulture);
             }
         }
         
@@ -146,6 +205,31 @@ namespace FX.SalesLogix.Modules.GitExtensions {
         internal static string SettingsText {
             get {
                 return ResourceManager.GetString("SettingsText", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap StashImage {
+            get {
+                object obj = ResourceManager.GetObject("StashImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stash Changes.
+        /// </summary>
+        internal static string StashText {
+            get {
+                return ResourceManager.GetString("StashText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Changes.
+        /// </summary>
+        internal static string ViewChangesText {
+            get {
+                return ResourceManager.GetString("ViewChangesText", resourceCulture);
             }
         }
     }

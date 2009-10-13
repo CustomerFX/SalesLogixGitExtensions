@@ -97,6 +97,41 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
             ShellCommand("pull");
         }
 
+        public static void Browse()
+        {
+            ShellCommand("browse");
+        }
+
+        public static void Stash()
+        {
+            ShellCommand("stash");
+        }
+
+        public static void Add()
+        {
+            ShellCommand("addfiles");
+        }
+
+        public static void Branch()
+        {
+            ShellCommand("branch");
+        }
+
+        public static void Checkout()
+        {
+            ShellCommand("checkout");
+        }
+
+        public static void Merge()
+        {
+            ShellCommand("merge");
+        }
+
+        public static void ViewChanges()
+        {
+            ShellCommand("viewdiff");
+        }
+
         private static void ShellCommand(string command)
         {
             ShellCommand(command, null);

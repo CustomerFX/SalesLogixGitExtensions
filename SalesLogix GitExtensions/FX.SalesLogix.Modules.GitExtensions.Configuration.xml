@@ -13,16 +13,32 @@
       <ChildElements>
         <UIElement TypeName="ToolStripSeparator" Uri="mnu://MainMenu/GitExtensionsModule/sep0" />
         <UIElement Uri="cmd://MainMenu/Git/GitExtensions"
-						   TypeName="ToolStripMenuItem"
-						   Command="cmd://GitExtensionsModule/GitExtensions">
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/GitExtensions">
           <Properties>
             <Property Name="Text">{Resource:GitExtensionsText}</Property>
             <Property Name="Image">{Resource:GitExtensionsImage}</Property>
           </Properties>
         </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/GitBrowse"
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/GitBrowse">
+          <Properties>
+            <Property Name="Text">{Resource:BrowseText}</Property>
+            <Property Name="Image">{Resource:BrowseImage}</Property>
+          </Properties>
+        </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/GitAdd"
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/GitAdd">
+          <Properties>
+            <Property Name="Text">{Resource:AddText}</Property>
+            <Property Name="Image">{Resource:AddImage}</Property>
+          </Properties>
+        </UIElement>
         <UIElement Uri="cmd://MainMenu/Git/GitCommit"
-						   TypeName="ToolStripMenuItem"
-						   Command="cmd://GitExtensionsModule/GitCommit">
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/GitCommit">
           <Properties>
             <Property Name="Text">{Resource:CommitText}</Property>
             <Property Name="Image">{Resource:CommitImage}</Property>
@@ -30,24 +46,60 @@
           </Properties>
         </UIElement>
         <UIElement Uri="cmd://MainMenu/Git/GitPull"
-       TypeName="ToolStripMenuItem"
-       Command="cmd://GitExtensionsModule/GitPull">
+                   TypeName="ToolStripMenuItem"
+                   Command="cmd://GitExtensionsModule/GitPull">
           <Properties>
             <Property Name="Text">{Resource:PullText}</Property>
             <Property Name="Image">{Resource:PullImage}</Property>
           </Properties>
         </UIElement>
         <UIElement Uri="cmd://MainMenu/Git/GitPush"
-       TypeName="ToolStripMenuItem"
-       Command="cmd://GitExtensionsModule/GitPush">
+                   TypeName="ToolStripMenuItem"
+                   Command="cmd://GitExtensionsModule/GitPush">
           <Properties>
             <Property Name="Text">{Resource:PushText}</Property>
             <Property Name="Image">{Resource:PushImage}</Property>
           </Properties>
         </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/GitBranch"
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/GitBranch">
+          <Properties>
+            <Property Name="Text">{Resource:BranchText}</Property>
+          </Properties>
+        </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/GitCheckout"
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/GitCheckout">
+          <Properties>
+            <Property Name="Text">{Resource:CheckoutText}</Property>
+          </Properties>
+        </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/GitMerge"
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/GitMerge">
+          <Properties>
+            <Property Name="Text">{Resource:MergeText}</Property>
+          </Properties>
+        </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/GitViewChanges"
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/GitViewChanges">
+          <Properties>
+            <Property Name="Text">{Resource:ViewChangesText}</Property>
+          </Properties>
+        </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/GitStash"
+                   TypeName="ToolStripMenuItem"
+                   Command="cmd://GitExtensionsModule/GitStash">
+          <Properties>
+            <Property Name="Text">{Resource:StashText}</Property>
+            <Property Name="Image">{Resource:StashImage}</Property>
+          </Properties>
+        </UIElement>
         <UIElement Uri="cmd://MainMenu/Git/GitSettings"
-						   TypeName="ToolStripMenuItem"
-						   Command="cmd://GitExtensionsModule/GitSettings">
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/GitSettings">
           <Properties>
             <Property Name="Text">{Resource:SettingsText}</Property>
             <Property Name="Image">{Resource:SettingsImage}</Property>
@@ -59,8 +111,8 @@
 		<UIExtensionSite Uri="tb://IDE" TypeTemplate="System.Windows.Forms.{0}, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
 			<ChildElements>
         <UIElement Uri="tb://IDE/GitExtensionsModule/GitExtensions"
-						   TypeName="ToolStripButton"
-						   Command="cmd://GitExtensionsModule/GitExtensions">
+						       TypeName="ToolStripButton"
+						       Command="cmd://GitExtensionsModule/GitExtensions">
           <Properties>
             <Property Name="Text">{Resource:GitExtensionsText}</Property>
             <Property Name="Image">{Resource:GitExtensionsImage}</Property>
@@ -68,45 +120,65 @@
             <Property Name="ToolTipText">Launch Git Extensions</Property>
           </Properties>
         </UIElement>
+        <UIElement Uri="tb://IDE/GitExtensionsModule/GitBrowse"
+						       TypeName="ToolStripButton"
+						       Command="cmd://GitExtensionsModule/GitBrowse">
+          <Properties>
+            <Property Name="Text">{Resource:BrowseText}</Property>
+            <Property Name="Image">{Resource:BrowseImage}</Property>
+            <Property Name="DisplayStyle">Image</Property>
+            <Property Name="ToolTipText">Browse Git Repository</Property>
+          </Properties>
+        </UIElement>
 				<UIElement Uri="tb://IDE/GitExtensionsModule/GitCommit" 
-						   TypeName="ToolStripButton"
-						   Command="cmd://GitExtensionsModule/GitCommit">
+						       TypeName="ToolStripButton"
+						       Command="cmd://GitExtensionsModule/GitCommit">
 					<Properties>
 						<Property Name="Text">{Resource:CommitText}</Property>
 						<Property Name="Image">{Resource:CommitImage}</Property>
 						<Property Name="ShortcutKeys">Control,Alt,C</Property>
 						<Property Name="DisplayStyle">ImageAndText</Property>
-            <Property Name="ToolTipText">Commit modified files</Property>
+            <Property Name="ToolTipText">Commit Modified Files</Property>
 					</Properties>
 				</UIElement>
         <UIElement Uri="tb://IDE/GitExtensionsModule/GitPull"
-						   TypeName="ToolStripButton"
-						   Command="cmd://GitExtensionsModule/GitPull">
+						       TypeName="ToolStripButton"
+						       Command="cmd://GitExtensionsModule/GitPull">
           <Properties>
             <Property Name="Text">{Resource:PullText}</Property>
             <Property Name="Image">{Resource:PullImage}</Property>
             <Property Name="DisplayStyle">Image</Property>
-            <Property Name="ToolTipText">Pull from Git repository</Property>
+            <Property Name="ToolTipText">Pull From Git Repository</Property>
           </Properties>
         </UIElement>
         <UIElement Uri="tb://IDE/GitExtensionsModule/GitPush"
-						   TypeName="ToolStripButton"
-						   Command="cmd://GitExtensionsModule/GitPush">
+						       TypeName="ToolStripButton"
+						       Command="cmd://GitExtensionsModule/GitPush">
           <Properties>
             <Property Name="Text">{Resource:PushText}</Property>
             <Property Name="Image">{Resource:PushImage}</Property>
             <Property Name="DisplayStyle">Image</Property>
-            <Property Name="ToolTipText">Push to Git repository</Property>
+            <Property Name="ToolTipText">Push to Git Repository</Property>
+          </Properties>
+        </UIElement>
+        <UIElement Uri="tb://IDE/GitExtensionsModule/GitStash"
+						       TypeName="ToolStripButton"
+						       Command="cmd://GitExtensionsModule/GitStash">
+          <Properties>
+            <Property Name="Text">{Resource:StashText}</Property>
+            <Property Name="Image">{Resource:StashImage}</Property>
+            <Property Name="DisplayStyle">Image</Property>
+            <Property Name="ToolTipText">Stash Changes</Property>
           </Properties>
         </UIElement>
         <UIElement Uri="tb://IDE/GitExtensionsModule/GitSettings"
-						   TypeName="ToolStripButton"
-						   Command="cmd://GitExtensionsModule/GitSettings">
+						       TypeName="ToolStripButton"
+						       Command="cmd://GitExtensionsModule/GitSettings">
           <Properties>
             <Property Name="Text">{Resource:SettingsText}</Property>
             <Property Name="Image">{Resource:SettingsImage}</Property>
             <Property Name="DisplayStyle">Image</Property>
-            <Property Name="ToolTipText">See Git Extension settings</Property>
+            <Property Name="ToolTipText">See Git Extension Settings</Property>
           </Properties>
         </UIElement>
         <UIElement TypeName="ToolStripSeparator" Uri="tb://IDE/GitExtensionsModule/sep0" />

@@ -72,6 +72,48 @@ namespace FX.SalesLogix.Modules.GitExtensions
             ExtensionsConnector.Show();
         }
 
+        [CommandHandler("cmd://GitExtensionsModule/GitBrowse")]
+        public void GitBrowseClick(object sender, EventArgs e)
+        {
+            ExtensionsConnector.Browse();
+        }
+
+        [CommandHandler("cmd://GitExtensionsModule/GitStash")]
+        public void GitStashClick(object sender, EventArgs e)
+        {
+            ExtensionsConnector.Stash();
+        }
+
+        [CommandHandler("cmd://GitExtensionsModule/GitAdd")]
+        public void GitAddClick(object sender, EventArgs e)
+        {
+            ExtensionsConnector.Add();
+        }
+
+        [CommandHandler("cmd://GitExtensionsModule/GitBranch")]
+        public void GitBranchClick(object sender, EventArgs e)
+        {
+            ExtensionsConnector.Branch();
+        }
+
+        [CommandHandler("cmd://GitExtensionsModule/GitCheckout")]
+        public void GitCheckoutClick(object sender, EventArgs e)
+        {
+            ExtensionsConnector.Checkout();
+        }
+
+        [CommandHandler("cmd://GitExtensionsModule/GitMerge")]
+        public void GitMergeClick(object sender, EventArgs e)
+        {
+            ExtensionsConnector.Merge();
+        }
+
+        [CommandHandler("cmd://GitExtensionsModule/GitViewChanges")]
+        public void GitViewChangesClick(object sender, EventArgs e)
+        {
+            ExtensionsConnector.ViewChanges();
+        }
+
         [ServiceDependency]
         public IProjectContextService ProjectContextService
         {

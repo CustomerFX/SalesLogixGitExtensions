@@ -94,10 +94,13 @@
     <EmbeddedResource Include="FX.SalesLogix.Modules.GitExtensions.Configuration.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\AddImage.png" />
+    <Content Include="Resources\BrowseImage.png" />
     <Content Include="Resources\GitExtensionsImage.png" />
     <Content Include="Resources\PullImage.png" />
     <Content Include="Resources\PushImage.png" />
     <Content Include="Resources\SettingsImage.png" />
+    <Content Include="Resources\StashImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
