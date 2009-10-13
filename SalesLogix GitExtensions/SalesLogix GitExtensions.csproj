@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connectors\WorkspaceConnector.cs" />
     <Compile Include="GitExtensionResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,6 +79,7 @@
     </Compile>
     <Compile Include="GitExtensionsInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Connectors\ExtensionsConnector.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GitExtensionResources.resx">

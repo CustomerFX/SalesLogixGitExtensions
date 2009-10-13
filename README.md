@@ -1,4 +1,4 @@
-This project integrates Git Extensions into the SalesLogix Application Architect (at least it will eventually).
+This project integrates Git Extensions into the SalesLogix Application Architect. <a href="http://cloud.github.com/downloads/CustomerFX/SalesLogixGitExtensions/GitExtensionsForSalesLogix.png">See a screenshot</a>.
 
 To add to Application Architect, copy the assembly into the "C:\Program Files\SalesLogix\SalesLogix" folder and then edit the file "C:\Program Files\SalesLogix\AppConfig\SalesLogix.xml" and do the following:
 

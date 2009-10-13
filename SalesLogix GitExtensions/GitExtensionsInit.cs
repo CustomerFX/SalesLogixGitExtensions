@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using System.Windows.Forms;
-using System.IO;
 using log4net;
-using Sage.Platform;
 using Sage.Platform.Application;
 using Sage.Platform.Application.UI;
 using Sage.Platform.Projects;
 using Sage.Platform.Projects.Interfaces;
+using FX.SalesLogix.Modules.GitExtensions.Connectors;
 
 namespace FX.SalesLogix.Modules.GitExtensions
 {
     public class GitExtensionsInit : ModuleInit<UIWorkItem>, IModuleConfigurationProvider
     {
-        public const string AdminWorkItemID = "9D4BB197-6FBC-4bf4-AAF5-7EE958603EDE";
+        private const string _NOTEXPORTEDMODELMESSAGE = "This function is not available with a model in the VFS. Export your working model to work with source control.";
 
         private IProjectContextService _projectContextService;
         private static readonly ILog _log = LogManager.GetLogger("FX.Modules");
@@ -31,34 +28,48 @@ namespace FX.SalesLogix.Modules.GitExtensions
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitCommit")]
-        public void GitCommit_Click(object sender, EventArgs e)
+        public void GitCommitClick(object sender, EventArgs e)
         {
-            ProjectWorkspace workspace = _projectContextService.ActiveProject.ProjectWorkspace;
-            MessageBox.Show("Workspace Type: " + (workspace.WorkingPath.ToLower().StartsWith("vfs") ? "VFS" : "File System") + "\r\nName: " + workspace.Name + "\r\nPath: " + workspace.WorkingPath);
+            if (WorkspaceConnector.IsExportedModel)
+            {
+                ExtensionsConnector.Commit();
+            }
+            else
+                MessageBox.Show(_NOTEXPORTEDMODELMESSAGE);
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitPull")]
-        public void GitPull_Click(object sender, EventArgs e)
+        public void GitPullClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Pull");
+            if (WorkspaceConnector.IsExportedModel)
+            {
+                ExtensionsConnector.Pull();
+            }
+            else
+                MessageBox.Show(_NOTEXPORTEDMODELMESSAGE);
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitPush")]
-        public void GitPush_Click(object sender, EventArgs e)
+        public void GitPushClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Push");
+            if (WorkspaceConnector.IsExportedModel)
+            {
+                ExtensionsConnector.Push();
+            }
+            else
+                MessageBox.Show(_NOTEXPORTEDMODELMESSAGE);
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitSettings")]
-        public void GitSettings_Click(object sender, EventArgs e)
+        public void GitSettingsClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Settings");
+            ExtensionsConnector.Settings();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitExtensions")]
-        public void GitExtensions_Click(object sender, EventArgs e)
+        public void GitExtensionsClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Launch Git Extensions");
+            ExtensionsConnector.Show();
         }
 
         [ServiceDependency]
@@ -71,6 +82,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
             set
             {
                 this._projectContextService = value;
+                WorkspaceConnector.ProjectContextService = this._projectContextService;
             }
         }
 
