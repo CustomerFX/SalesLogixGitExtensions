@@ -89,6 +89,15 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
             catch { throw; }
         }
 
+        public static void Init()
+        {
+            try
+            {
+                ShellCommand("init");
+            }
+            catch { throw; }
+        }
+
         public static void Settings()
         {
             try

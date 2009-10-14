@@ -39,5 +39,13 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
                 return path;
             }
         }
+
+        public static bool IsRepository
+        {
+            get
+            {
+                return Directory.Exists(Path.Combine(ProjectPathRoot, ".git"));
+            }
+        }
     }
 }

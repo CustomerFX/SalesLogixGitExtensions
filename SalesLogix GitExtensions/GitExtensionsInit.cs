@@ -28,27 +28,21 @@ namespace FX.SalesLogix.Modules.GitExtensions
         [CommandHandler("cmd://GitExtensionsModule/GitCommit")]
         public void GitCommitClick(object sender, EventArgs e)
         {
-            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
-            if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
-
+            if (!EnvironmentCheck()) return;
             ExtensionsConnector.Commit();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitPull")]
         public void GitPullClick(object sender, EventArgs e)
         {
-            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
-            if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
-
+            if (!EnvironmentCheck()) return;
             ExtensionsConnector.Pull();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitPush")]
         public void GitPushClick(object sender, EventArgs e)
         {
-            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
-            if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
-
+            if (!EnvironmentCheck()) return;
             ExtensionsConnector.Push();
         }
 
@@ -69,61 +63,73 @@ namespace FX.SalesLogix.Modules.GitExtensions
         [CommandHandler("cmd://GitExtensionsModule/GitBrowse")]
         public void GitBrowseClick(object sender, EventArgs e)
         {
+            if (!WorkspaceConnector.IsRepository) { NoRepositoryAction(); return; }
             ExtensionsConnector.Browse();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitStash")]
         public void GitStashClick(object sender, EventArgs e)
         {
-            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
-            if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
-
+            if (!EnvironmentCheck()) return;
             ExtensionsConnector.Stash();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitAdd")]
         public void GitAddClick(object sender, EventArgs e)
         {
-            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
-            if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
-
+            if (!EnvironmentCheck()) return;
             ExtensionsConnector.Add();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitBranch")]
         public void GitBranchClick(object sender, EventArgs e)
         {
-            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
-            if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
-
+            if (!EnvironmentCheck()) return;
             ExtensionsConnector.Branch();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitCheckout")]
         public void GitCheckoutClick(object sender, EventArgs e)
         {
-            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
-            if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
-
+            if (!EnvironmentCheck()) return;
             ExtensionsConnector.Checkout();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitMerge")]
         public void GitMergeClick(object sender, EventArgs e)
         {
-            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
-            if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
-
+            if (!EnvironmentCheck()) return;
             ExtensionsConnector.Merge();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitViewChanges")]
         public void GitViewChangesClick(object sender, EventArgs e)
         {
-            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
-            if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
-
+            if (!EnvironmentCheck()) return;
             ExtensionsConnector.ViewChanges();
+        }
+
+        private bool EnvironmentCheck()
+        {
+            if (!ExtensionsConnector.IsInstalled)
+            { 
+                NoExtensionsAction();
+                return false;
+            }
+
+            if (!WorkspaceConnector.IsExportedModel)
+            {
+                NoModelAction();
+                return false;
+            }
+
+            if (!WorkspaceConnector.IsRepository)
+            {
+                NoRepositoryAction();
+                return false;
+            }
+
+            return true;
         }
 
         private void NoExtensionsAction()
@@ -135,6 +141,19 @@ namespace FX.SalesLogix.Modules.GitExtensions
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Exclamation
                             );
+        }
+
+        private void NoRepositoryAction()
+        {
+            if (MessageBox.Show(
+                            "The current workspace directory '" + WorkspaceConnector.ProjectPathRoot + "' is not a Git repository.\r\n\r\nWould you like to make it a repository?",
+                            "Git Extensions for SalesLogix",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question
+                            ) == DialogResult.Yes)
+            {
+                ExtensionsConnector.Init();
+            }
         }
 
         private void NoModelAction()
