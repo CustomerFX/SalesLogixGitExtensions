@@ -28,33 +28,41 @@ namespace FX.SalesLogix.Modules.GitExtensions
         [CommandHandler("cmd://GitExtensionsModule/GitCommit")]
         public void GitCommitClick(object sender, EventArgs e)
         {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
+
             ExtensionsConnector.Commit();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitPull")]
         public void GitPullClick(object sender, EventArgs e)
         {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
+
             ExtensionsConnector.Pull();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitPush")]
         public void GitPushClick(object sender, EventArgs e)
         {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
+
             ExtensionsConnector.Push();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitSettings")]
         public void GitSettingsClick(object sender, EventArgs e)
         {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             ExtensionsConnector.Settings();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitExtensions")]
         public void GitExtensionsClick(object sender, EventArgs e)
         {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             ExtensionsConnector.Show();
         }
 
@@ -67,42 +75,66 @@ namespace FX.SalesLogix.Modules.GitExtensions
         [CommandHandler("cmd://GitExtensionsModule/GitStash")]
         public void GitStashClick(object sender, EventArgs e)
         {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
+
             ExtensionsConnector.Stash();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitAdd")]
         public void GitAddClick(object sender, EventArgs e)
         {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
+
             ExtensionsConnector.Add();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitBranch")]
         public void GitBranchClick(object sender, EventArgs e)
         {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
+
             ExtensionsConnector.Branch();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitCheckout")]
         public void GitCheckoutClick(object sender, EventArgs e)
         {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
+            if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
+
             ExtensionsConnector.Checkout();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitMerge")]
         public void GitMergeClick(object sender, EventArgs e)
         {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
+
             ExtensionsConnector.Merge();
         }
 
         [CommandHandler("cmd://GitExtensionsModule/GitViewChanges")]
         public void GitViewChangesClick(object sender, EventArgs e)
         {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             if (!WorkspaceConnector.IsExportedModel) { NoModelAction(); return; }
+
             ExtensionsConnector.ViewChanges();
+        }
+
+        private void NoExtensionsAction()
+        {
+            MessageBox.Show(
+                            "Git Extensions is not installed. Git Extensions must be installed to use Git Extensions for SalesLogix.\r\n\r\n" + 
+                            "To install Git Extensions visit: http://code.google.com/p/gitextensions/",
+                            "Git Extensions for SalesLogix",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation
+                            );
         }
 
         private void NoModelAction()
@@ -113,6 +145,11 @@ namespace FX.SalesLogix.Modules.GitExtensions
                             MessageBoxButtons.OK, 
                             MessageBoxIcon.Exclamation
                             );
+        }
+
+        private void ShowExceptionMessage(Exception exception)
+        {
+            MessageBox.Show(exception.Message, "Git Extensions for SalesLogix", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         [ServiceDependency]

@@ -40,6 +40,14 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
     {
         public static string Executable = "GitExtensions.exe";
 
+        public static bool IsInstalled
+        {
+            get
+            {
+                return (ExtensionsPath != string.Empty);
+            }
+        }
+
         public static string ExtensionsFile
         {
             get
@@ -74,79 +82,136 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
 
         public static void Show()
         {
-            ShellCommand(null);
+            try
+            {
+                ShellCommand(null);
+            }
+            catch { throw; }
         }
 
         public static void Settings()
         {
-            ShellCommand("settings");
+            try
+            {
+                ShellCommand("settings");
+            }
+            catch { throw; }
         }
 
         public static void Commit()
         {
-            ShellCommand("commit");
+            try
+            {
+                ShellCommand("commit");
+            }
+            catch { throw; }
         }
 
         public static void Push()
         {
-            ShellCommand("push");
+            try
+            {
+                ShellCommand("push");
+            }
+            catch { throw; }
         }
 
         public static void Pull()
         {
-            ShellCommand("pull");
+            try
+            {
+                ShellCommand("pull");
+            }
+            catch { throw; }
         }
 
         public static void Browse()
         {
-            ShellCommand("browse");
+            try
+            {
+                ShellCommand("browse");
+            }
+            catch { throw; }
         }
 
         public static void Stash()
         {
-            ShellCommand("stash");
+            try
+            {
+                ShellCommand("stash");
+            }
+            catch { throw; }
         }
 
         public static void Add()
         {
-            ShellCommand("addfiles");
+            try
+            {
+                ShellCommand("addfiles");
+            }
+            catch { throw; }
         }
 
         public static void Branch()
         {
-            ShellCommand("branch");
+            try
+            {
+                ShellCommand("branch");
+            }
+            catch { throw; }
         }
 
         public static void Checkout()
         {
-            ShellCommand("checkout");
+            try
+            {
+                ShellCommand("checkout");
+            }
+            catch { throw; }
         }
 
         public static void Merge()
         {
-            ShellCommand("merge");
+            try
+            {
+                ShellCommand("merge");
+            }
+            catch { throw; }
         }
 
         public static void ViewChanges()
         {
-            ShellCommand("viewdiff");
-        }
-
-        private static void ShellCommand(string command)
-        {
-            ShellCommand(command, null);
-        }
-
-        private static void ShellCommand(string command, string arg)
-        {
-            using (Process p = new Process())
+            try
             {
-                p.StartInfo.UseShellExecute = true;
-                p.StartInfo.FileName = ExtensionsConnector.ExtensionsFile;
-                p.StartInfo.WorkingDirectory = WorkspaceConnector.ProjectPathRoot;
-                if (command != null) p.StartInfo.Arguments = command + (arg == null ? string.Empty : " " + arg);
-                p.Start();
+                ShellCommand("viewdiff");
             }
+            catch { throw; }
+        }
+
+        public static void ShellCommand(string command)
+        {
+            try
+            {
+                ShellCommand(command, null);
+            }
+            catch { throw; }
+        }
+
+        public static void ShellCommand(string command, string arg)
+        {
+            try
+            {
+                if (ExtensionsPath == string.Empty) throw new Exception("Git Extensions is not installed. Git Extensions must be installed to use Git Extensions for SalesLogix.");
+                using (Process p = new Process())
+                {
+                    p.StartInfo.UseShellExecute = true;
+                    p.StartInfo.FileName = ExtensionsConnector.ExtensionsFile;
+                    p.StartInfo.WorkingDirectory = WorkspaceConnector.ProjectPathRoot;
+                    if (command != null) p.StartInfo.Arguments = command + (arg == null ? string.Empty : " " + arg);
+                    p.Start();
+                }
+            }
+            catch { throw; }
         }
     }
 }
