@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connectors\WorkspaceConnector.cs" />
+    <Compile Include="Constants\Commands.cs" />
     <Compile Include="GitExtensionResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

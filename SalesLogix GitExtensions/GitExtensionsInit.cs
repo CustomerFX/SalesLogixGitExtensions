@@ -37,6 +37,7 @@ using Sage.Platform.Application;
 using Sage.Platform.Application.UI;
 using Sage.Platform.Projects;
 using Sage.Platform.Projects.Interfaces;
+using FX.SalesLogix.Modules.GitExtensions.Constants;
 using FX.SalesLogix.Modules.GitExtensions.Connectors;
 
 namespace FX.SalesLogix.Modules.GitExtensions
@@ -46,99 +47,118 @@ namespace FX.SalesLogix.Modules.GitExtensions
         private IProjectContextService _projectContextService;
         private static readonly ILog _log = LogManager.GetLogger("FX.Modules");
 
+        protected override void Load()
+        {
+            _log.Info("Loading " + GitExtensionResources.ModuleName);
+        }
+
         public override string ToString()
         {
             return GitExtensionResources.ModuleName;
         }
+
+        #region Module Configuration
 
         public ModuleConfiguration GetConfiguration()
         {
             return ModuleConfiguration.LoadFromResource("FX.SalesLogix.Modules.GitExtensions.FX.SalesLogix.Modules.GitExtensions.Configuration.xml", base.GetType().Assembly);
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitCommit")]
+        protected override void Configure(XmlElement xmlConfig)
+        {
+        }
+
+        #endregion
+
+        # region Command Handlers
+
+        [CommandHandler(Commands.Commit)]
         public void GitCommitClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Commit();
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitPull")]
+        [CommandHandler(Commands.Pull)]
         public void GitPullClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Pull();
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitPush")]
+        [CommandHandler(Commands.Push)]
         public void GitPushClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Push();
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitSettings")]
+        [CommandHandler(Commands.Settings)]
         public void GitSettingsClick(object sender, EventArgs e)
         {
             if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             ExtensionsConnector.Settings();
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitExtensions")]
+        [CommandHandler(Commands.GitExtensions)]
         public void GitExtensionsClick(object sender, EventArgs e)
         {
             if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
             ExtensionsConnector.Show();
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitBrowse")]
+        [CommandHandler(Commands.Browse)]
         public void GitBrowseClick(object sender, EventArgs e)
         {
             if (!WorkspaceConnector.IsRepository) { NoRepositoryAction(); return; }
             ExtensionsConnector.Browse();
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitStash")]
+        [CommandHandler(Commands.Stash)]
         public void GitStashClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Stash();
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitAdd")]
+        [CommandHandler(Commands.Add)]
         public void GitAddClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Add();
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitBranch")]
+        [CommandHandler(Commands.Branch)]
         public void GitBranchClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Branch();
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitCheckout")]
+        [CommandHandler(Commands.Checkout)]
         public void GitCheckoutClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Checkout();
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitMerge")]
+        [CommandHandler(Commands.Merge)]
         public void GitMergeClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Merge();
         }
 
-        [CommandHandler("cmd://GitExtensionsModule/GitViewChanges")]
+        [CommandHandler(Commands.ViewChanges)]
         public void GitViewChangesClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.ViewChanges();
         }
+
+        #endregion
+
+        #region Environment Check Actions
 
         private bool EnvironmentCheck()
         {
@@ -202,6 +222,10 @@ namespace FX.SalesLogix.Modules.GitExtensions
             MessageBox.Show(exception.Message, "Git Extensions for SalesLogix", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        #endregion
+
+        #region Service Dependencies
+
         [ServiceDependency]
         public IProjectContextService ProjectContextService
         {
@@ -216,13 +240,6 @@ namespace FX.SalesLogix.Modules.GitExtensions
             }
         }
 
-        protected override void Configure(XmlElement xmlConfig)
-        {
-        }
-
-        protected override void Load()
-        {
-            _log.Info("Loading Git Extensions for SalesLogix");
-        }
+        #endregion
     }
 }

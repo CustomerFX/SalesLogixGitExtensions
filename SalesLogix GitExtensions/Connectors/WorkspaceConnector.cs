@@ -41,13 +41,13 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
 {
     public class WorkspaceConnector
     {
-        public static IProjectContextService ProjectContextService = null;
+        public static IProjectContextService ProjectContext = null;
 
         public static bool IsExportedModel
         {
             get
             {
-                ProjectWorkspace workspace = ProjectContextService.ActiveProject.ProjectWorkspace;
+                ProjectWorkspace workspace = ProjectContext.ActiveProject.ProjectWorkspace;
                 return !workspace.WorkingPath.ToLower().StartsWith("vfs");
             }
         }
@@ -56,7 +56,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
         {
             get
             {
-                ProjectWorkspace workspace = ProjectContextService.ActiveProject.ProjectWorkspace;
+                ProjectWorkspace workspace = ProjectContext.ActiveProject.ProjectWorkspace;
                 return workspace.WorkingPath;
             }
         }

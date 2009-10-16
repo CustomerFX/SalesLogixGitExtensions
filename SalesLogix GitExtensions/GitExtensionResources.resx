@@ -124,8 +124,14 @@
   <data name="AddText" xml:space="preserve">
     <value>Add Files</value>
   </data>
+  <data name="AddTooltip" xml:space="preserve">
+    <value>Add Files to Repository</value>
+  </data>
   <data name="BranchText" xml:space="preserve">
     <value>Create Branch</value>
+  </data>
+  <data name="BranchTooltip" xml:space="preserve">
+    <value>Create a New Branch</value>
   </data>
   <data name="BrowseImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\browseimage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -133,8 +139,14 @@
   <data name="BrowseText" xml:space="preserve">
     <value>Browse Repository</value>
   </data>
+  <data name="BrowseTooltip" xml:space="preserve">
+    <value>Browse Git Repository</value>
+  </data>
   <data name="CheckoutText" xml:space="preserve">
     <value>Checkout Branch</value>
+  </data>
+  <data name="CheckoutTooltip" xml:space="preserve">
+    <value>Checkout a Branch</value>
   </data>
   <data name="CommitImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\commitimage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,14 +154,23 @@
   <data name="CommitText" xml:space="preserve">
     <value>Commit</value>
   </data>
+  <data name="CommitTooltip" xml:space="preserve">
+    <value>Commit Modified Files</value>
+  </data>
   <data name="GitExtensionsImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\gitextensionsimage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GitExtensionsText" xml:space="preserve">
     <value>Git Extensions</value>
   </data>
+  <data name="GitExtensionsTooltip" xml:space="preserve">
+    <value>Launch Git Extensions</value>
+  </data>
   <data name="MergeText" xml:space="preserve">
     <value>Merge Branch</value>
+  </data>
+  <data name="MergeTooltip" xml:space="preserve">
+    <value>Merge a Branch</value>
   </data>
   <data name="ModuleName" xml:space="preserve">
     <value>Git Extensions for SalesLogix</value>
@@ -160,11 +181,17 @@
   <data name="PullText" xml:space="preserve">
     <value>Pull</value>
   </data>
+  <data name="PullTooltip" xml:space="preserve">
+    <value>Pull From Git Repository</value>
+  </data>
   <data name="PushImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\pushimage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PushText" xml:space="preserve">
     <value>Push</value>
+  </data>
+  <data name="PushTooltip" xml:space="preserve">
+    <value>Push to Git Repository</value>
   </data>
   <data name="SettingsImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\settingsimage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,13 +199,22 @@
   <data name="SettingsText" xml:space="preserve">
     <value>Git Extensions Settings</value>
   </data>
+  <data name="SettingsTooltip" xml:space="preserve">
+    <value>See Git Extension Settings</value>
+  </data>
   <data name="StashImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\stashimage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StashText" xml:space="preserve">
     <value>Stash Changes</value>
   </data>
+  <data name="StashTooltip" xml:space="preserve">
+    <value>Stash Changes</value>
+  </data>
   <data name="ViewChangesText" xml:space="preserve">
     <value>View Changes</value>
+  </data>
+  <data name="ViewChangesTooltip" xml:space="preserve">
+    <value>View Previous Commits and Changes</value>
   </data>
 </root>

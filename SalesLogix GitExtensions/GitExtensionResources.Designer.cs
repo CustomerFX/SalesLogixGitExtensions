@@ -77,11 +77,29 @@ namespace FX.SalesLogix.Modules.GitExtensions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Files to Repository.
+        /// </summary>
+        internal static string AddTooltip {
+            get {
+                return ResourceManager.GetString("AddTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Branch.
         /// </summary>
         internal static string BranchText {
             get {
                 return ResourceManager.GetString("BranchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a New Branch.
+        /// </summary>
+        internal static string BranchTooltip {
+            get {
+                return ResourceManager.GetString("BranchTooltip", resourceCulture);
             }
         }
         
@@ -102,11 +120,29 @@ namespace FX.SalesLogix.Modules.GitExtensions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browse Git Repository.
+        /// </summary>
+        internal static string BrowseTooltip {
+            get {
+                return ResourceManager.GetString("BrowseTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Checkout Branch.
         /// </summary>
         internal static string CheckoutText {
             get {
                 return ResourceManager.GetString("CheckoutText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checkout a Branch.
+        /// </summary>
+        internal static string CheckoutTooltip {
+            get {
+                return ResourceManager.GetString("CheckoutTooltip", resourceCulture);
             }
         }
         
@@ -123,6 +159,15 @@ namespace FX.SalesLogix.Modules.GitExtensions {
         internal static string CommitText {
             get {
                 return ResourceManager.GetString("CommitText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commit Modified Files.
+        /// </summary>
+        internal static string CommitTooltip {
+            get {
+                return ResourceManager.GetString("CommitTooltip", resourceCulture);
             }
         }
         
@@ -143,11 +188,29 @@ namespace FX.SalesLogix.Modules.GitExtensions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Launch Git Extensions.
+        /// </summary>
+        internal static string GitExtensionsTooltip {
+            get {
+                return ResourceManager.GetString("GitExtensionsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Merge Branch.
         /// </summary>
         internal static string MergeText {
             get {
                 return ResourceManager.GetString("MergeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge a Branch.
+        /// </summary>
+        internal static string MergeTooltip {
+            get {
+                return ResourceManager.GetString("MergeTooltip", resourceCulture);
             }
         }
         
@@ -176,6 +239,15 @@ namespace FX.SalesLogix.Modules.GitExtensions {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Pull From Git Repository.
+        /// </summary>
+        internal static string PullTooltip {
+            get {
+                return ResourceManager.GetString("PullTooltip", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap PushImage {
             get {
                 object obj = ResourceManager.GetObject("PushImage", resourceCulture);
@@ -192,6 +264,15 @@ namespace FX.SalesLogix.Modules.GitExtensions {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Push to Git Repository.
+        /// </summary>
+        internal static string PushTooltip {
+            get {
+                return ResourceManager.GetString("PushTooltip", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap SettingsImage {
             get {
                 object obj = ResourceManager.GetObject("SettingsImage", resourceCulture);
@@ -205,6 +286,15 @@ namespace FX.SalesLogix.Modules.GitExtensions {
         internal static string SettingsText {
             get {
                 return ResourceManager.GetString("SettingsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See Git Extension Settings.
+        /// </summary>
+        internal static string SettingsTooltip {
+            get {
+                return ResourceManager.GetString("SettingsTooltip", resourceCulture);
             }
         }
         
@@ -225,11 +315,29 @@ namespace FX.SalesLogix.Modules.GitExtensions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stash Changes.
+        /// </summary>
+        internal static string StashTooltip {
+            get {
+                return ResourceManager.GetString("StashTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View Changes.
         /// </summary>
         internal static string ViewChangesText {
             get {
                 return ResourceManager.GetString("ViewChangesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Previous Commits and Changes.
+        /// </summary>
+        internal static string ViewChangesTooltip {
+            get {
+                return ResourceManager.GetString("ViewChangesTooltip", resourceCulture);
             }
         }
     }

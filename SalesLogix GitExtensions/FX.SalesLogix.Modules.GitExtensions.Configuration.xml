@@ -149,7 +149,7 @@
             <Property Name="Text">{Resource:GitExtensionsText}</Property>
             <Property Name="Image">{Resource:GitExtensionsImage}</Property>
             <Property Name="DisplayStyle">Image</Property>
-            <Property Name="ToolTipText">Launch Git Extensions</Property>
+            <Property Name="ToolTipText">{Resource:GitExtensionsTooltip}</Property>
           </Properties>
         </UIElement>
         <UIElement Uri="tb://IDE/GitExtensionsModule/GitBrowse"
@@ -159,7 +159,7 @@
             <Property Name="Text">{Resource:BrowseText}</Property>
             <Property Name="Image">{Resource:BrowseImage}</Property>
             <Property Name="DisplayStyle">Image</Property>
-            <Property Name="ToolTipText">Browse Git Repository</Property>
+            <Property Name="ToolTipText">{Resource:BrowseTooltip}</Property>
           </Properties>
         </UIElement>
 				<UIElement Uri="tb://IDE/GitExtensionsModule/GitCommit" 
@@ -170,7 +170,7 @@
 						<Property Name="Image">{Resource:CommitImage}</Property>
 						<Property Name="ShortcutKeys">Control,Alt,C</Property>
 						<Property Name="DisplayStyle">ImageAndText</Property>
-            <Property Name="ToolTipText">Commit Modified Files</Property>
+            <Property Name="ToolTipText">{Resource:CommitTooltip}</Property>
 					</Properties>
 				</UIElement>
         <UIElement Uri="tb://IDE/GitExtensionsModule/GitPull"
@@ -180,7 +180,7 @@
             <Property Name="Text">{Resource:PullText}</Property>
             <Property Name="Image">{Resource:PullImage}</Property>
             <Property Name="DisplayStyle">Image</Property>
-            <Property Name="ToolTipText">Pull From Git Repository</Property>
+            <Property Name="ToolTipText">{Resource:PullTooltip}</Property>
           </Properties>
         </UIElement>
         <UIElement Uri="tb://IDE/GitExtensionsModule/GitPush"
@@ -190,7 +190,7 @@
             <Property Name="Text">{Resource:PushText}</Property>
             <Property Name="Image">{Resource:PushImage}</Property>
             <Property Name="DisplayStyle">Image</Property>
-            <Property Name="ToolTipText">Push to Git Repository</Property>
+            <Property Name="ToolTipText">{Resource:PushTooltip}</Property>
           </Properties>
         </UIElement>
         <UIElement Uri="tb://IDE/GitExtensionsModule/GitStash"
@@ -200,7 +200,7 @@
             <Property Name="Text">{Resource:StashText}</Property>
             <Property Name="Image">{Resource:StashImage}</Property>
             <Property Name="DisplayStyle">Image</Property>
-            <Property Name="ToolTipText">Stash Changes</Property>
+            <Property Name="ToolTipText">{Resource:StashTooltip}</Property>
           </Properties>
         </UIElement>
         <UIElement Uri="tb://IDE/GitExtensionsModule/GitSettings"
@@ -210,7 +210,7 @@
             <Property Name="Text">{Resource:SettingsText}</Property>
             <Property Name="Image">{Resource:SettingsImage}</Property>
             <Property Name="DisplayStyle">Image</Property>
-            <Property Name="ToolTipText">See Git Extension Settings</Property>
+            <Property Name="ToolTipText">{Resource:SettingsTooltip}</Property>
           </Properties>
         </UIElement>
         <UIElement TypeName="ToolStripSeparator" Uri="tb://IDE/GitExtensionsModule/sep0" />
