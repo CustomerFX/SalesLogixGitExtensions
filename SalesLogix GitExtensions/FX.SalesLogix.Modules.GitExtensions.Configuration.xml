@@ -137,6 +137,14 @@
             <Property Name="Image">{Resource:SettingsImage}</Property>
           </Properties>
         </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/About"
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/About">
+          <Properties>
+            <Property Name="Text">{Resource:AboutText}</Property>
+            <Property Name="Image">{Resource:AboutImage}</Property>
+          </Properties>
+        </UIElement>
         <UIElement TypeName="ToolStripSeparator" Uri="mnu://MainMenu/GitExtensionsModule/sep1" />
       </ChildElements>
     </UIExtensionSite>
@@ -211,6 +219,16 @@
             <Property Name="Image">{Resource:SettingsImage}</Property>
             <Property Name="DisplayStyle">Image</Property>
             <Property Name="ToolTipText">{Resource:SettingsTooltip}</Property>
+          </Properties>
+        </UIElement>
+        <UIElement Uri="tb://IDE/GitExtensionsModule/About"
+						       TypeName="ToolStripButton"
+						       Command="cmd://GitExtensionsModule/About">
+          <Properties>
+            <Property Name="Text">{Resource:AboutText}</Property>
+            <Property Name="Image">{Resource:AboutImage}</Property>
+            <Property Name="DisplayStyle">Image</Property>
+            <Property Name="ToolTipText">{Resource:AboutTooltip}</Property>
           </Properties>
         </UIElement>
         <UIElement TypeName="ToolStripSeparator" Uri="tb://IDE/GitExtensionsModule/sep0" />

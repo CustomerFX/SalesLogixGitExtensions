@@ -60,6 +60,31 @@ namespace FX.SalesLogix.Modules.GitExtensions {
             }
         }
         
+        internal static System.Drawing.Bitmap AboutImage {
+            get {
+                object obj = ResourceManager.GetObject("AboutImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About Git Extensions for SalesLogix.
+        /// </summary>
+        internal static string AboutText {
+            get {
+                return ResourceManager.GetString("AboutText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About Git Extensions for SalesLogix.
+        /// </summary>
+        internal static string AboutTooltip {
+            get {
+                return ResourceManager.GetString("AboutTooltip", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap AddImage {
             get {
                 object obj = ResourceManager.GetObject("AddImage", resourceCulture);

@@ -156,6 +156,15 @@ namespace FX.SalesLogix.Modules.GitExtensions
             ExtensionsConnector.ViewChanges();
         }
 
+        [CommandHandler(Commands.About)]
+        public void AboutClick(object sender, EventArgs e)
+        {
+            using (UI.AboutDialog dlg = new UI.AboutDialog())
+            {
+                dlg.ShowDialog();
+            }
+        }
+
         #endregion
 
         #region Environment Check Actions
@@ -236,7 +245,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
             set
             {
                 this._projectContextService = value;
-                WorkspaceConnector.ProjectContextService = this._projectContextService;
+                WorkspaceConnector.ProjectContext = this._projectContextService;
             }
         }
 
