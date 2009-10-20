@@ -107,6 +107,7 @@
     <Content Include="Resources\AboutImage.png" />
     <Content Include="Resources\AddImage.png" />
     <Content Include="Resources\BrowseImage.png" />
+    <Content Include="Resources\GitBashImage.png" />
     <Content Include="Resources\GitExtensionsImage.png" />
     <Content Include="Resources\PullImage.png" />
     <Content Include="Resources\PushImage.png" />
@@ -121,4 +122,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>COPY "$(TargetPath)" "C:\Program Files\SalesLogix\SalesLogix"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

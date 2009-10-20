@@ -51,5 +51,6 @@ namespace FX.SalesLogix.Modules.GitExtensions.Constants
         public const string Merge = "cmd://GitExtensionsModule/GitMerge";
         public const string ViewChanges = "cmd://GitExtensionsModule/GitViewChanges";
         public const string About = "cmd://GitExtensionsModule/About";
+        public const string Bash = "cmd://GitExtensionsModule/GitBash";
     }
 }

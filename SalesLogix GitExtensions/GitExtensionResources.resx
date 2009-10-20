@@ -166,6 +166,15 @@
   <data name="CommitTooltip" xml:space="preserve">
     <value>Commit Modified Files</value>
   </data>
+  <data name="GitBashImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\gitbashimage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GitBashText" xml:space="preserve">
+    <value>Launch Git Bash</value>
+  </data>
+  <data name="GitBashTooltip" xml:space="preserve">
+    <value>Launch Git Bash for your working project directory</value>
+  </data>
   <data name="GitExtensionsImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\gitextensionsimage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

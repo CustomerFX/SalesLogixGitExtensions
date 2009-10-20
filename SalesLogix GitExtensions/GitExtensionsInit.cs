@@ -156,6 +156,13 @@ namespace FX.SalesLogix.Modules.GitExtensions
             ExtensionsConnector.ViewChanges();
         }
 
+        [CommandHandler(Commands.Bash)]
+        public void GitBashClick(object sender, EventArgs e)
+        {
+            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
+            ExtensionsConnector.ShellBash();
+        }
+
         [CommandHandler(Commands.About)]
         public void AboutClick(object sender, EventArgs e)
         {

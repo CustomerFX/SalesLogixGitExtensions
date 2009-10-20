@@ -52,6 +52,14 @@
             <Property Name="Image">{Resource:GitExtensionsImage}</Property>
           </Properties>
         </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/GitBash"
+                   TypeName="ToolStripMenuItem"
+                   Command="cmd://GitExtensionsModule/GitBash">
+          <Properties>
+            <Property Name="Text">{Resource:GitBashText}</Property>
+            <Property Name="Image">{Resource:GitBashImage}</Property>
+          </Properties>
+        </UIElement>
         <UIElement Uri="cmd://MainMenu/Git/GitBrowse"
 						       TypeName="ToolStripMenuItem"
 						       Command="cmd://GitExtensionsModule/GitBrowse">
@@ -158,6 +166,16 @@
             <Property Name="Image">{Resource:GitExtensionsImage}</Property>
             <Property Name="DisplayStyle">Image</Property>
             <Property Name="ToolTipText">{Resource:GitExtensionsTooltip}</Property>
+          </Properties>
+        </UIElement>
+        <UIElement Uri="tb://IDE/GitExtensionsModule/GitBash"
+						       TypeName="ToolStripButton"
+						       Command="cmd://GitExtensionsModule/GitBash">
+          <Properties>
+            <Property Name="Text">{Resource:GitBashText}</Property>
+            <Property Name="Image">{Resource:GitBashImage}</Property>
+            <Property Name="DisplayStyle">Image</Property>
+            <Property Name="ToolTipText">{Resource:GitBashTooltip}</Property>
           </Properties>
         </UIElement>
         <UIElement Uri="tb://IDE/GitExtensionsModule/GitBrowse"

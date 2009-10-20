@@ -83,6 +83,33 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
             }
         }
 
+        public static string BashFile
+        {
+            get
+            {
+                string path = string.Empty;
+                try
+                {
+                    RegistryKey key = null;
+                    key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions\1.0.0.0", false);
+                    if (key != null)
+                    {
+                        object o = key.GetValue("gitbindir");
+                        if (o != null)
+                        {
+                            path = o.ToString();
+                            if (!Directory.Exists(o.ToString()))
+                                path = string.Empty;
+                            else
+                                path = Path.Combine(path, "sh.exe");
+                        }
+                    }
+                }
+                catch { }
+                return path;
+            }
+        }
+
         public static void Show()
         {
             try
@@ -220,6 +247,22 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
                     p.StartInfo.FileName = ExtensionsConnector.ExtensionsFile;
                     p.StartInfo.WorkingDirectory = WorkspaceConnector.ProjectPathRoot;
                     if (command != null) p.StartInfo.Arguments = command + (arg == null ? string.Empty : " " + arg);
+                    p.Start();
+                }
+            }
+            catch { throw; }
+        }
+
+        public static void ShellBash()
+        {
+            try
+            {
+                if (ExtensionsPath == string.Empty) throw new Exception("Git Extensions is not installed. Git Extensions must be installed to use Git Extensions for SalesLogix.");
+                using (Process p = new Process())
+                {
+                    p.StartInfo.UseShellExecute = true;
+                    p.StartInfo.FileName = "cmd.exe";
+                    p.StartInfo.Arguments = "/c pushd \"" + WorkspaceConnector.ProjectPathRoot + "\" && \"" + ExtensionsConnector.BashFile + "\" --login -i";
                     p.Start();
                 }
             }

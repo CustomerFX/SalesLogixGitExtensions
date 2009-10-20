@@ -196,6 +196,31 @@ namespace FX.SalesLogix.Modules.GitExtensions {
             }
         }
         
+        internal static System.Drawing.Bitmap GitBashImage {
+            get {
+                object obj = ResourceManager.GetObject("GitBashImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch Git Bash.
+        /// </summary>
+        internal static string GitBashText {
+            get {
+                return ResourceManager.GetString("GitBashText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch Git Bash for your working project directory.
+        /// </summary>
+        internal static string GitBashTooltip {
+            get {
+                return ResourceManager.GetString("GitBashTooltip", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap GitExtensionsImage {
             get {
                 object obj = ResourceManager.GetObject("GitExtensionsImage", resourceCulture);
