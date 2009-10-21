@@ -34,6 +34,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Threading;
 using Sage.Platform.Projects;
 using Sage.Platform.Projects.Interfaces;
 
@@ -77,6 +78,11 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
             {
                 return Directory.Exists(Path.Combine(ProjectPathRoot, ".git"));
             }
+        }
+
+        public static void Reload()
+        {
+            ProjectContext.ReloadActiveProject();
         }
     }
 }

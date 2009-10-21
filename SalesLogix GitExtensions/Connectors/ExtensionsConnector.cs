@@ -159,7 +159,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
         {
             try
             {
-                ShellCommand("pull");
+                ShellCommand("pull", true);
             }
             catch { throw; }
         }
@@ -231,12 +231,30 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
         {
             try
             {
-                ShellCommand(command, null);
+                ShellCommand(command, null, false);
+            }
+            catch { throw; }
+        }
+
+        public static void ShellCommand(string command, bool wait)
+        {
+            try
+            {
+                ShellCommand(command, null, wait);
             }
             catch { throw; }
         }
 
         public static void ShellCommand(string command, string arg)
+        {
+            try
+            {
+                ShellCommand(command, null, false);
+            }
+            catch { throw; }
+        }
+
+        public static void ShellCommand(string command, string arg, bool wait)
         {
             try
             {
@@ -248,6 +266,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
                     p.StartInfo.WorkingDirectory = WorkspaceConnector.ProjectPathRoot;
                     if (command != null) p.StartInfo.Arguments = command + (arg == null ? string.Empty : " " + arg);
                     p.Start();
+                    if (wait) p.WaitForExit();
                 }
             }
             catch { throw; }

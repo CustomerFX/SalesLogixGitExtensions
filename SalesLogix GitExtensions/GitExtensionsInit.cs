@@ -32,6 +32,7 @@
 using System;
 using System.Xml;
 using System.Windows.Forms;
+using System.Threading;
 using log4net;
 using Sage.Platform.Application;
 using Sage.Platform.Application.UI;
@@ -46,6 +47,8 @@ namespace FX.SalesLogix.Modules.GitExtensions
     {
         private IProjectContextService _projectContextService;
         private static readonly ILog _log = LogManager.GetLogger("FX.Modules");
+
+        private UI.ReloadingWorkspaceForm _waitform = null;
 
         protected override void Load()
         {
@@ -84,6 +87,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Pull();
+            ReloadWorkspace();
         }
 
         [CommandHandler(Commands.Push)]
@@ -170,6 +174,27 @@ namespace FX.SalesLogix.Modules.GitExtensions
             {
                 dlg.ShowDialog();
             }
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void ReloadWorkspace()
+        {
+            _waitform = new UI.ReloadingWorkspaceForm();
+
+            Thread t = new Thread(new ThreadStart(ShowWaitForm));
+            t.Start();
+
+            WorkspaceConnector.Reload();
+            _waitform.SetClose();
+            _waitform.Dispose();
+        }
+
+        public void ShowWaitForm()
+        {
+            _waitform.ShowDialog();
         }
 
         #endregion
