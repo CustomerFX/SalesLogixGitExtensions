@@ -123,7 +123,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
         {
             try
             {
-                ShellCommand("init");
+                ShellCommand("init", true);
             }
             catch { throw; }
         }

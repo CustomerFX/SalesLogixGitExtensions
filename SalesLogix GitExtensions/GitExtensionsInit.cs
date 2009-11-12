@@ -234,13 +234,14 @@ namespace FX.SalesLogix.Modules.GitExtensions
         private void NoRepositoryAction()
         {
             if (MessageBox.Show(
-                            "The current workspace directory '" + WorkspaceConnector.ProjectPathRoot + "' is not a Git repository.\r\n\r\nWould you like to make it a repository?",
+                            "The current workspace directory '" + WorkspaceConnector.ProjectPathRoot + "' is not a Git repository.\r\n\r\nWould you like to make it a repository? (Note: this will also add the standard SalesLogix ignore entries to the .gitignore file)",
                             "Git Extensions for SalesLogix",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question
                             ) == DialogResult.Yes)
             {
                 ExtensionsConnector.Init();
+                WorkspaceConnector.AddStandardIgnore();
             }
         }
 
