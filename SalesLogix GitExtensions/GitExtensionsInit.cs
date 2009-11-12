@@ -85,6 +85,8 @@ namespace FX.SalesLogix.Modules.GitExtensions
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Pull();
             WorkspaceConnector.Reload();
+
+            MessageBox.Show("Your project workspace has been reloaded. Note: you will need to rebuild your web platform before you deploy.", "Pull Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         [CommandHandler(Commands.Push)]
