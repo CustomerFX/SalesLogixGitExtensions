@@ -184,6 +184,9 @@
   <data name="GitExtensionsTooltip" xml:space="preserve">
     <value>Launch Git Extensions</value>
   </data>
+  <data name="GitIgnoreText" xml:space="preserve">
+    <value>Edit .gitignore</value>
+  </data>
   <data name="MergeText" xml:space="preserve">
     <value>Merge Branch</value>
   </data>

@@ -76,6 +76,13 @@
             <Property Name="Image">{Resource:AddImage}</Property>
           </Properties>
         </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/GitIgnore"
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/GitIgnore">
+          <Properties>
+            <Property Name="Text">{Resource:GitIgnoreText}</Property>
+          </Properties>
+        </UIElement>
         <UIElement Uri="cmd://MainMenu/Git/GitCommit"
 						       TypeName="ToolStripMenuItem"
 						       Command="cmd://GitExtensionsModule/GitCommit">

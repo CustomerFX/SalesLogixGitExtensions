@@ -32,7 +32,6 @@
 using System;
 using System.Xml;
 using System.Windows.Forms;
-using System.Threading;
 using log4net;
 using Sage.Platform.Application;
 using Sage.Platform.Application.UI;
@@ -47,8 +46,6 @@ namespace FX.SalesLogix.Modules.GitExtensions
     {
         private IProjectContextService _projectContextService;
         private static readonly ILog _log = LogManager.GetLogger("FX.Modules");
-
-        private UI.ReloadingWorkspaceForm _waitform = null;
 
         protected override void Load()
         {
@@ -87,7 +84,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Pull();
-            ReloadWorkspace();
+            WorkspaceConnector.Reload();
         }
 
         [CommandHandler(Commands.Push)]
@@ -167,6 +164,26 @@ namespace FX.SalesLogix.Modules.GitExtensions
             ExtensionsConnector.ShellBash();
         }
 
+        [CommandHandler(Commands.EditGitIgnore)]
+        public void GitIgnoreClick(object sender, EventArgs e)
+        {
+            if (!EnvironmentCheck()) return;
+
+            if (!WorkspaceConnector.HasGitIgnore)
+            {
+                switch (MessageBox.Show("Your current repository does not yet have a .gitignore file. Would you like to add the standard SalesLogix ignore entries?", "Add Standard SalesLogix Model Entries?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question))
+                {
+                    case DialogResult.Yes:
+                        WorkspaceConnector.AddStandardIgnore();
+                        break;
+                    case DialogResult.Cancel:
+                        return;
+                }
+            }
+
+            ExtensionsConnector.EditGitIgnore();
+        }
+
         [CommandHandler(Commands.About)]
         public void AboutClick(object sender, EventArgs e)
         {
@@ -174,27 +191,6 @@ namespace FX.SalesLogix.Modules.GitExtensions
             {
                 dlg.ShowDialog();
             }
-        }
-
-        #endregion
-
-        #region Methods
-
-        public void ReloadWorkspace()
-        {
-            _waitform = new UI.ReloadingWorkspaceForm();
-
-            Thread t = new Thread(new ThreadStart(ShowWaitForm));
-            t.Start();
-
-            WorkspaceConnector.Reload();
-            _waitform.SetClose();
-            _waitform.Dispose();
-        }
-
-        public void ShowWaitForm()
-        {
-            _waitform.ShowDialog();
         }
 
         #endregion

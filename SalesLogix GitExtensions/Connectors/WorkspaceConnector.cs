@@ -80,9 +80,48 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
             }
         }
 
+        public static bool HasGitIgnore
+        {
+            get
+            {
+                return File.Exists(Path.Combine(ProjectPathRoot, ".gitignore"));
+            }
+        }
+
         public static void Reload()
         {
             ProjectContext.ReloadActiveProject();
+        }
+
+        public static void AddStandardIgnore()
+        {
+            if (HasGitIgnore) return;
+
+            using (StreamWriter writer = new StreamWriter(Path.Combine(ProjectPathRoot, ".gitignore")))
+            {
+                writer.WriteLine("# Files created from merge tools");
+                writer.WriteLine("*.BASE");
+                writer.WriteLine("*.LOCAL");
+                writer.WriteLine("*.REMOTE");
+                writer.WriteLine("*.orig");
+                writer.WriteLine(writer.NewLine);
+
+                writer.WriteLine("# Model files that are auto-generated");
+                writer.WriteLine("[Mm]odel[Ii]ndex.xml");
+                writer.WriteLine(writer.NewLine);
+
+                writer.WriteLine("# Standard deployment files");
+                writer.WriteLine("*/deployment/webroot/common/[Ss]mart[Pp]arts/**/*");
+                writer.WriteLine("*/deployment/webroot/common/[Ss]mart[Pp]arts/**/**/*");
+                writer.WriteLine("*/deployment/webroot/common/[Ss]ummary[Cc]onfig[Dd]ata/*");
+                writer.WriteLine("*/deployment/webroot/common/bin/*");
+                writer.WriteLine("*/deployment/webroot/common/*");
+                writer.WriteLine("*/deployment/common/bin/[Ss]age.[Ee]ntity.[Ii]nterfaces.dll");
+                writer.WriteLine("*/deployment/common/bin/[Ss]age.[Ff]orm.[Ii]nterfaces.dll");
+                writer.WriteLine(writer.NewLine);
+
+                writer.Close();
+            }
         }
     }
 }

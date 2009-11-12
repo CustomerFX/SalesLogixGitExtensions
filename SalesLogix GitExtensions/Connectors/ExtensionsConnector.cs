@@ -227,6 +227,15 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
             catch { throw; }
         }
 
+        public static void EditGitIgnore()
+        {
+            try
+            {
+                ShellCommand("gitignore");
+            }
+            catch { throw; }
+        }
+
         public static void ShellCommand(string command)
         {
             try
@@ -290,30 +299,3 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
     }
 }
 
-/* Git Extensions Command Line Arguments
-
-    browse
-    add
-    addfiles
-    apply
-    applypatch
-    branch
-    checkout
-    checkoutbranch
-    checkoutrevision
-    init
-    clone [path]
-    commit
-    filehistory [file]
-    formatpatch
-    pull
-    push
-    settings
-    viewdiff
-    rebase
-    merge
-    cherry
-    tag
-    stash
-
-*/

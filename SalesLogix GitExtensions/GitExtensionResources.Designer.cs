@@ -247,6 +247,15 @@ namespace FX.SalesLogix.Modules.GitExtensions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit .gitignore.
+        /// </summary>
+        internal static string GitIgnoreText {
+            get {
+                return ResourceManager.GetString("GitIgnoreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Merge Branch.
         /// </summary>
         internal static string MergeText {
