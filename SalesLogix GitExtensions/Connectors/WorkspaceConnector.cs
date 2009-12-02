@@ -72,6 +72,12 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
             }
         }
 
+        public static void OpenProjectFolder()
+        {
+            if (ProjectPathRoot != string.Empty)
+                System.Diagnostics.Process.Start(ProjectPathRoot);
+        }
+
         public static bool IsRepository
         {
             get

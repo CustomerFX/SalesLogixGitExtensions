@@ -282,6 +282,31 @@ namespace FX.SalesLogix.Modules.GitExtensions {
             }
         }
         
+        internal static System.Drawing.Bitmap OpenFolderImage {
+            get {
+                object obj = ResourceManager.GetObject("OpenFolderImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Project Folder.
+        /// </summary>
+        internal static string OpenFolderText {
+            get {
+                return ResourceManager.GetString("OpenFolderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open the current project folder.
+        /// </summary>
+        internal static string OpenFolderTooltip {
+            get {
+                return ResourceManager.GetString("OpenFolderTooltip", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap PullImage {
             get {
                 object obj = ResourceManager.GetObject("PullImage", resourceCulture);

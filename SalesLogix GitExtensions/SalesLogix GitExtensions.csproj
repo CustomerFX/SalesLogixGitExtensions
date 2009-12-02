@@ -109,6 +109,7 @@
     <Content Include="Resources\BrowseImage.png" />
     <Content Include="Resources\GitBashImage.png" />
     <Content Include="Resources\GitExtensionsImage.png" />
+    <Content Include="Resources\OpenFolderImage.png" />
     <Content Include="Resources\PullImage.png" />
     <Content Include="Resources\PushImage.png" />
     <Content Include="Resources\SettingsImage.png" />

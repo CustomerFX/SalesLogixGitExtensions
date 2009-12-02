@@ -53,5 +53,6 @@ namespace FX.SalesLogix.Modules.GitExtensions.Constants
         public const string About = "cmd://GitExtensionsModule/About";
         public const string Bash = "cmd://GitExtensionsModule/GitBash";
         public const string EditGitIgnore = "cmd://GitExtensionsModule/GitIgnore";
+        public const string OpenFolder = "cmd://GitExtensionsModule/OpenFolder";
     }
 }

@@ -186,6 +186,13 @@ namespace FX.SalesLogix.Modules.GitExtensions
             ExtensionsConnector.EditGitIgnore();
         }
 
+        [CommandHandler(Commands.OpenFolder)]
+        public void OpenFolderClick(object sender, EventArgs e)
+        {
+            if (!WorkspaceConnector.IsExportedModel) return;
+            WorkspaceConnector.OpenProjectFolder();
+        }
+
         [CommandHandler(Commands.About)]
         public void AboutClick(object sender, EventArgs e)
         {

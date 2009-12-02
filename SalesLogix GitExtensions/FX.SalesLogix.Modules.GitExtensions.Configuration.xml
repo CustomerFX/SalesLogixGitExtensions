@@ -144,6 +144,14 @@
             <Property Name="Image">{Resource:StashImage}</Property>
           </Properties>
         </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/OpenFolder"
+                   TypeName="ToolStripMenuItem"
+                   Command="cmd://GitExtensionsModule/OpenFolder">
+          <Properties>
+            <Property Name="Text">{Resource:OpenFolderText}</Property>
+            <Property Name="Image">{Resource:OpenFolderImage}</Property>
+          </Properties>
+        </UIElement>
         <UIElement Uri="cmd://MainMenu/Git/GitSettings"
 						       TypeName="ToolStripMenuItem"
 						       Command="cmd://GitExtensionsModule/GitSettings">
