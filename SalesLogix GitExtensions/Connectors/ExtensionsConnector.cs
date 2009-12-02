@@ -236,6 +236,15 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
             catch { throw; }
         }
 
+        public static void ManageRemotes()
+        {
+            try
+            {
+                ShellCommand("remotes");
+            }
+            catch { throw; }
+        }
+
         public static void ShellCommand(string command)
         {
             try

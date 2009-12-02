@@ -193,6 +193,13 @@ namespace FX.SalesLogix.Modules.GitExtensions
             WorkspaceConnector.OpenProjectFolder();
         }
 
+        [CommandHandler(Commands.ManageRemotes)]
+        public void ManageRemotesClick(object sender, EventArgs e)
+        {
+            if (!EnvironmentCheck()) return;
+            ExtensionsConnector.ManageRemotes();
+        }
+
         [CommandHandler(Commands.About)]
         public void AboutClick(object sender, EventArgs e)
         {

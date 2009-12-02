@@ -264,6 +264,31 @@ namespace FX.SalesLogix.Modules.GitExtensions {
             }
         }
         
+        internal static System.Drawing.Bitmap ManageRemotesImage {
+            get {
+                object obj = ResourceManager.GetObject("ManageRemotesImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Remote Repositories.
+        /// </summary>
+        internal static string ManageRemotesText {
+            get {
+                return ResourceManager.GetString("ManageRemotesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Remote Repositories.
+        /// </summary>
+        internal static string ManageRemotesTooltip {
+            get {
+                return ResourceManager.GetString("ManageRemotesTooltip", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Merge Branch.
         /// </summary>

@@ -106,6 +106,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
             using (StreamWriter writer = new StreamWriter(Path.Combine(ProjectPathRoot, ".gitignore")))
             {
                 writer.WriteLine("# Files created from merge tools");
+                writer.WriteLine("*.BACKUP");
                 writer.WriteLine("*.BASE");
                 writer.WriteLine("*.LOCAL");
                 writer.WriteLine("*.REMOTE");

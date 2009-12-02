@@ -68,6 +68,14 @@
             <Property Name="Image">{Resource:BrowseImage}</Property>
           </Properties>
         </UIElement>
+        <UIElement Uri="cmd://MainMenu/Git/ManageRemotes"
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/ManageRemotes">
+          <Properties>
+            <Property Name="Text">{Resource:ManageRemotesText}</Property>
+            <Property Name="Image">{Resource:ManageRemotesImage}</Property>
+          </Properties>
+        </UIElement>
         <UIElement Uri="cmd://MainMenu/Git/OpenFolder"
                    TypeName="ToolStripMenuItem"
                    Command="cmd://GitExtensionsModule/OpenFolder">

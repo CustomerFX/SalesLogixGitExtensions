@@ -190,6 +190,15 @@
   <data name="GitIgnoreTooltip" xml:space="preserve">
     <value>Edit .gitignore</value>
   </data>
+  <data name="ManageRemotesImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\manageremotesimage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ManageRemotesText" xml:space="preserve">
+    <value>Manage Remote Repositories</value>
+  </data>
+  <data name="ManageRemotesTooltip" xml:space="preserve">
+    <value>Manage Remote Repositories</value>
+  </data>
   <data name="MergeText" xml:space="preserve">
     <value>Merge Branch</value>
   </data>
