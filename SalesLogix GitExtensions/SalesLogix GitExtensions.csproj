@@ -95,15 +95,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CommitImage.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="FX.SalesLogix.Modules.GitExtensions.Configuration.xml" />
     <EmbeddedResource Include="UI\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\CommitImage.png" />
     <Content Include="Resources\AboutImage.png" />
     <Content Include="Resources\AddImage.png" />
     <Content Include="Resources\BrowseImage.png" />
@@ -125,6 +123,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>COPY "$(TargetPath)" "C:\Program Files\SalesLogix\SalesLogix"</PostBuildEvent>
+    <PostBuildEvent>COPY "$(TargetPath)" "C:\Program Files\SalesLogix\SalesLogix"
+COPY "$(TargetPath)" "C:\Program Files\SalesLogix\Modules"</PostBuildEvent>
   </PropertyGroup>
 </Project>
