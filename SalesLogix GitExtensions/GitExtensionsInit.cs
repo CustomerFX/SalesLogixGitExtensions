@@ -50,6 +50,12 @@ namespace FX.SalesLogix.Modules.GitExtensions
         protected override void Load()
         {
             _log.Info("Loading " + GitExtensionResources.ModuleName);
+            this.ModuleWorkItem.RootWorkItem.Terminated += new EventHandler(RootWorkItem_Terminated);
+        }
+
+        private void RootWorkItem_Terminated(object sender, EventArgs e)
+        {
+            Utility.AssemblyUpdate.Start();
         }
 
         public override string ToString()

@@ -87,6 +87,7 @@
     <Compile Include="UI\AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utility\AssemblyUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GitExtensionResources.resx">
