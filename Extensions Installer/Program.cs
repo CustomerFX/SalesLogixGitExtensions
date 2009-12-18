@@ -43,13 +43,21 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             SetAppLocation();
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            if (args.Length > 0 && args[0].ToLower() == "auto")
+            {
+                InstallationAction action = new InstallationAction();
+                action.Start();
+            }
+            else
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new MainForm());
+            }
         }
 
         private static void SetAppLocation()
