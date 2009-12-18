@@ -77,6 +77,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             this.labelNoGitExt = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.linkLabelGetGitExt = new System.Windows.Forms.LinkLabel();
+            this.linkSetProxy = new System.Windows.Forms.LinkLabel();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCfx)).BeginInit();
@@ -170,7 +171,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             this.labelProgress.AutoSize = true;
             this.labelProgress.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelProgress.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelProgress.Location = new System.Drawing.Point(72, 259);
+            this.labelProgress.Location = new System.Drawing.Point(72, 270);
             this.labelProgress.Name = "labelProgress";
             this.labelProgress.Size = new System.Drawing.Size(0, 14);
             this.labelProgress.TabIndex = 7;
@@ -179,7 +180,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(75, 277);
+            this.progressBar1.Location = new System.Drawing.Point(75, 288);
             this.progressBar1.MarqueeAnimationSpeed = 80;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(385, 23);
@@ -251,6 +252,17 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             this.linkLabelGetGitExt.Text = "Download";
             this.linkLabelGetGitExt.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGetGitExt_LinkClicked);
             // 
+            // linkSetProxy
+            // 
+            this.linkSetProxy.AutoSize = true;
+            this.linkSetProxy.Location = new System.Drawing.Point(13, 216);
+            this.linkSetProxy.Name = "linkSetProxy";
+            this.linkSetProxy.Size = new System.Drawing.Size(96, 13);
+            this.linkSetProxy.TabIndex = 10;
+            this.linkSetProxy.TabStop = true;
+            this.linkSetProxy.Text = "Click to set a proxy";
+            this.linkSetProxy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSetProxy_LinkClicked);
+            // 
             // MainForm
             // 
             this.AcceptButton = this.buttonStart;
@@ -258,6 +270,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(537, 429);
+            this.Controls.Add(this.linkSetProxy);
             this.Controls.Add(this.panelNoGitExt);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.labelProgress);
@@ -305,6 +318,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         private System.Windows.Forms.Label labelNoGitExt;
         private System.Windows.Forms.LinkLabel linkLabelGetGitExt;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.LinkLabel linkSetProxy;
     }
 }
 

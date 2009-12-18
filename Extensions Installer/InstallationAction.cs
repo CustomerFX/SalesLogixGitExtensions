@@ -66,6 +66,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             try
             {
                 WebClient client = new WebClient();
+                //client.Proxy = new WebProxy()
                 client.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
                 client.DownloadFile(string.Format("{0}?q={0}", _FILEURL, Environment.TickCount), localfile);                
             }

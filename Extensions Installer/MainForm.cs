@@ -124,5 +124,16 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         {
             System.Diagnostics.Process.Start(Utility.ExtensionsHelper.GitExtensionsUrl);
         }
+
+        private void linkSetProxy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            using (ProxySettings dlg = new ProxySettings())
+            {
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    //
+                }
+            }
+        }
     }
 }
