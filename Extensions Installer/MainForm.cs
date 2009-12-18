@@ -129,9 +129,34 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         {
             using (ProxySettings dlg = new ProxySettings())
             {
+                Utility.InstallerSettings settings = Utility.InstallerSettingsSerializer.Deserialize();
+
+                dlg.ProxyServer.Text = settings.ProxyServer;
+                dlg.ProxyPort.Text = settings.ProxyPort;
+
+                if (settings.ProxyUser != string.Empty)
+                {
+                    dlg.CheckUseProxyAuth.Checked = true;
+                    dlg.ProxyUser.Text = settings.ProxyUser;
+                    dlg.ProxyPassword.Text = settings.ProxyPassword;
+                }
+
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
-                    //
+                    settings.ProxyServer = dlg.ProxyServer.Text;
+                    settings.ProxyPort = dlg.ProxyPort.Text;
+                    if (dlg.CheckUseProxyAuth.Checked)
+                    {
+                        settings.ProxyUser = dlg.ProxyUser.Text;
+                        settings.ProxyPassword = dlg.ProxyPassword.Text;
+                    }
+                    else
+                    {
+                        settings.ProxyUser = string.Empty;
+                        settings.ProxyPassword = string.Empty;
+                    }
+
+                    Utility.InstallerSettingsSerializer.Serialize(settings);
                 }
             }
         }

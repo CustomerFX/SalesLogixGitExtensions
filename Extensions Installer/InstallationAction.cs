@@ -66,7 +66,10 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             try
             {
                 WebClient client = new WebClient();
-                //client.Proxy = new WebProxy()
+                
+                WebProxy proxy = GetWebProxy();
+                if (proxy != null) client.Proxy = proxy;
+                
                 client.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
                 client.DownloadFile(string.Format("{0}?q={0}", _FILEURL, Environment.TickCount), localfile);                
             }
@@ -152,6 +155,24 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             }
             catch { }
             return path;
+        }
+
+        private WebProxy GetWebProxy()
+        {
+            WebProxy proxy = null;
+
+            Utility.InstallerSettings settings = Utility.InstallerSettingsSerializer.Deserialize();
+            if (settings.FullProxyAddress != null)
+            {
+                proxy = new WebProxy(settings.FullProxyAddress);
+                if (settings.ProxyUser != string.Empty)
+                {
+                    proxy.Credentials = new System.Net.NetworkCredential(settings.ProxyUser, settings.ProxyPassword);
+                }
+                System.Net.GlobalProxySelection.Select = proxy;
+            }
+
+            return proxy;
         }
 
         private void RaiseInstallEvent(string description)
