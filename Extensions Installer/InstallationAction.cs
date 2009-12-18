@@ -10,7 +10,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
     public class InstallationAction
     {
-        public int TotalSteps = 4;
+        public int TotalSteps = 5;
         public event ActionEventHandler ActionEvent;
 
         private const string _FILEURL = "http://cloud.github.com/downloads/CustomerFX/SalesLogixGitExtensions/FX.SalesLogix.Modules.GitExtensions.dll";
@@ -31,6 +31,9 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             string file = DownloadFile();
             if (file == string.Empty) return;
 
+            RaiseInstallEvent("Checking installed file version");
+            if (!NewFileVersionCheck(file)) return;
+
             RaiseInstallEvent("Installing assembly in Application Architect");
             if (!InstallFile(file)) return;
 
@@ -46,6 +49,11 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         private string DownloadFile()
         {
             string localfile = Path.Combine(Path.GetTempPath(), _FILENAME);
+            try
+            {
+                if (File.Exists(localfile)) File.Delete(localfile);
+            }
+            catch { }
 
             try
             {
@@ -59,6 +67,24 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             }
 
             return localfile;
+        }
+
+        private bool NewFileVersionCheck(string file)
+        {
+            string slxfilelocation = Path.Combine(Path.Combine(GetSalesLogixRoot(), @"Modules\"), _FILENAME);
+            if (!File.Exists(slxfilelocation)) return true;
+
+            FileVersionInfo newfileversion = FileVersionInfo.GetVersionInfo(file);
+            FileVersionInfo slxfileversion = FileVersionInfo.GetVersionInfo(slxfilelocation);
+
+            Utility.FileComparison filecompare = Utility.FileHelper.CompareFileVersions(slxfilelocation, file);
+            if (filecompare != Utility.FileComparison.Older)
+            {
+                RaiseInstallEvent("Installed file is already up to date", TotalSteps);
+                return false;
+            }
+
+            return true;
         }
 
         private bool InstallFile(string file)
