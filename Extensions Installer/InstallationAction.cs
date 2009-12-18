@@ -16,7 +16,10 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         public int TotalSteps = 5;
         public event ActionEventHandler ActionEvent;
 
-        private const string _FILEURL = "http://cloud.github.com/downloads/CustomerFX/SalesLogixGitExtensions/FX.SalesLogix.Modules.GitExtensions.dll";
+        // Github is doing some caching and is returning old versions of the file
+        // so changing to my own location for now
+        //private const string _FILEURL = "http://cloud.github.com/downloads/CustomerFX/SalesLogixGitExtensions/FX.SalesLogix.Modules.GitExtensions.dll";
+        private const string _FILEURL = "http://www.cfxconnect.com/applications/saleslogixgitextensions/FX.SalesLogix.Modules.GitExtensions.dll";
         private const string _FILENAME = "FX.SalesLogix.Modules.GitExtensions.dll";
 
         private int _installstep = 0;
@@ -108,8 +111,19 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
             try
             {
-                ElevatedCopy(file, Path.Combine(location, @"Modules\"));
-                ElevatedCopy(file, Path.Combine(location, @"SalesLogix\"));
+                try
+                {
+                    File.Copy(file, Path.Combine(location, @"Modules\" + _FILENAME), true);
+                    File.Copy(file, Path.Combine(location, @"SalesLogix\" + _FILENAME), true);
+                }
+                catch { }
+
+                if (!File.Exists(Path.Combine(location, @"Modules\" + _FILENAME)))
+                    ElevatedCopy(file, Path.Combine(location, @"Modules\"));
+
+                if (!File.Exists(Path.Combine(location, @"SalesLogix\" + _FILENAME)))
+                    ElevatedCopy(file, Path.Combine(location, @"SalesLogix\"));
+
                 AssemblyUpdated = true;
                 return true;
             }
