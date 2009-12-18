@@ -55,6 +55,11 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
                 InstallationAction action = new InstallationAction();
                 action.Start();
+
+                if (action.AssemblyUpdated)
+                {
+                    MessageBox.Show("Git Extensions for SalesLogix has been updated!", "Update Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {

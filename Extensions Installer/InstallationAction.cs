@@ -10,6 +10,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
     public class InstallationAction
     {
+        public bool AssemblyUpdated = false;
         public int TotalSteps = 5;
         public event ActionEventHandler ActionEvent;
 
@@ -100,6 +101,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             {
                 ElevatedCopy(file, Path.Combine(location, @"Modules\"));
                 ElevatedCopy(file, Path.Combine(location, @"SalesLogix\"));
+                AssemblyUpdated = true;
                 return true;
             }
             catch (Exception ex)
