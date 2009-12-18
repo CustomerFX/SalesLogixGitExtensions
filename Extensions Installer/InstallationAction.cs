@@ -68,13 +68,14 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
             try
             {
-                WebClient client = new WebClient();
-                
-                WebProxy proxy = GetWebProxy();
-                if (proxy != null) client.Proxy = proxy;
-                
-                client.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
-                client.DownloadFile(string.Format("{0}?q={0}", _FILEURL, Environment.TickCount), localfile);                
+                using (WebClient client = new WebClient())
+                {
+                    WebProxy proxy = GetWebProxy();
+                    if (proxy != null) client.Proxy = proxy;
+
+                    client.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+                    client.DownloadFile(string.Format("{0}?q={0}", _FILEURL, Environment.TickCount), localfile);
+                }
             }
             catch (Exception ex)
             {
