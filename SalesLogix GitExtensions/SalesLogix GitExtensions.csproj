@@ -123,7 +123,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>COPY "$(TargetPath)" "C:\Program Files\SalesLogix\SalesLogix"
-COPY "$(TargetPath)" "C:\Program Files\SalesLogix\Modules"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

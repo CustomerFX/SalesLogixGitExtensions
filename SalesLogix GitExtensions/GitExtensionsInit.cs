@@ -44,8 +44,6 @@ namespace FX.SalesLogix.Modules.GitExtensions
 {
     public class GitExtensionsInit : ModuleInit<UIWorkItem>, IModuleConfigurationProvider
     {
-        //Utility.SageAssemblyResolver _assemblyresolver = new Utility.SageAssemblyResolver();
-
         private IProjectContextService _projectContextService;
         private static readonly ILog _log = LogManager.GetLogger("FX.Modules");
 
