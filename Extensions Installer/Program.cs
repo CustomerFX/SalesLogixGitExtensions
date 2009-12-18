@@ -33,6 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Threading;
 using Microsoft.Win32;
 
 namespace FX.SalesLogix.Modules.GitExtensions.Installer
@@ -49,6 +50,9 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
             if (args.Length > 0 && args[0].ToLower() == "auto")
             {
+                // Pause for 8 seconds to allow Application Architect to close
+                Thread.Sleep(8000);
+
                 InstallationAction action = new InstallationAction();
                 action.Start();
             }
