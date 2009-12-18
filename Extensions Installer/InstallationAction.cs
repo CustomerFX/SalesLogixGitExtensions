@@ -13,13 +13,14 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
     {
         public bool AssemblyUpdated = false;
         public bool AppArchitectRunningFailure = false;
-        public int TotalSteps = 5;
+        public int TotalSteps = 6;
         public event ActionEventHandler ActionEvent;
 
         // Github is doing some caching and is returning old versions of the file
         // so changing to my own location for now
         //private const string _FILEURL = "http://cloud.github.com/downloads/CustomerFX/SalesLogixGitExtensions/FX.SalesLogix.Modules.GitExtensions.dll";
         private const string _FILEURL = "http://www.cfxconnect.com/applications/saleslogixgitextensions/FX.SalesLogix.Modules.GitExtensions.dll";
+        private const string _FILEVERSONURL = "http://www.cfxconnect.com/applications/saleslogixgitextensions/CurrentVersion.txt";
         private const string _FILENAME = "FX.SalesLogix.Modules.GitExtensions.dll";
 
         private int _installstep = 0;
@@ -35,6 +36,9 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
                 RaiseInstallEvent("Application Architect is currently running. Close and try again.", TotalSteps);
                 return;
             }
+
+            RaiseInstallEvent("Checking if new version is available");
+            if (!CheckUpdateAvailable()) return;
 
             RaiseInstallEvent("Downloading assembly from github");
             string file = DownloadFile();
@@ -53,6 +57,44 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         {
             Process[] procs = Process.GetProcessesByName("SageAppArchitect");
             return (procs.Length > 0);
+        }
+
+        private bool CheckUpdateAvailable()
+        {
+            bool newavail = false;
+
+            if (!File.Exists(Path.Combine(Path.Combine(GetSalesLogixRoot(), @"Modules\"), _FILENAME))) newavail = true;
+
+            Version currentversion = new Version(FileVersionInfo.GetVersionInfo(Path.Combine(Path.Combine(GetSalesLogixRoot(), @"Modules\"), _FILENAME)).FileVersion);
+            if (currentversion.CompareTo(GetAvailableFileVersion()) < 0)
+            {
+                RaiseInstallEvent("An update is available!");
+                newavail = true;
+            }
+
+            if (!newavail) RaiseInstallEvent("There is not a newer version available. You are already up to date", TotalSteps);
+
+            return newavail;
+        }
+
+        private Version GetAvailableFileVersion()
+        {
+            Version availversion = new Version("1.0.0.0");
+
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    WebProxy proxy = GetWebProxy();
+                    if (proxy != null) client.Proxy = proxy;
+
+                    client.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+                    availversion = new Version(client.DownloadString(string.Format("{0}?q={0}", _FILEVERSONURL, Environment.TickCount)));
+                }
+            }
+            catch { }
+
+            return availversion;
         }
 
         private string DownloadFile()
