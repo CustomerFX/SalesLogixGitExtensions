@@ -39,7 +39,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Utility
                         if (o != null)
                         {
                             path = o.ToString();
-                            if (!Directory.Exists(o.ToString())) path = string.Empty;
+                            if (!File.Exists(o.ToString())) path = string.Empty;
                         }
                     }
                 }

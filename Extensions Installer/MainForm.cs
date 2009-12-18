@@ -65,17 +65,18 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             {
                 Utility.ControlHelper.SetControlText(labelProgress, e.ActionDescription);
 
-                if (!labelProgress.Visible)
-                {
-                    Utility.ControlHelper.SetControlVisible(labelProgress, true);
-                    Utility.ControlHelper.SetControlVisible(progressBar1, true);
-                }
+                if (!labelProgress.Visible) Utility.ControlHelper.SetControlVisible(labelProgress, true);
+                if (!progressBar1.Visible) Utility.ControlHelper.SetControlVisible(progressBar1, true);
 
                 if (e.ActionStep == _action.TotalSteps)
                 {
                     Utility.ControlHelper.SetControlVisible(progressBar1, false);
-                    Utility.ControlHelper.SetControlVisible(buttonStart, false);
-                    Utility.ControlHelper.SetControlText(buttonCancel, "Close");
+
+                    if (!_action.AppArchitectRunningFailure)
+                    {
+                        Utility.ControlHelper.SetControlVisible(buttonStart, false);
+                        Utility.ControlHelper.SetControlText(buttonCancel, "Close");
+                    }
                 }
             }
         }

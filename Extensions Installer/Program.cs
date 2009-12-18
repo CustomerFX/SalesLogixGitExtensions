@@ -34,6 +34,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Threading;
+using System.Diagnostics;
 using Microsoft.Win32;
 
 namespace FX.SalesLogix.Modules.GitExtensions.Installer
@@ -50,10 +51,11 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
             if (args.Length > 0 && args[0].ToLower() == "auto")
             {
-                // Pause for 8 seconds to allow Application Architect to close
-                Thread.Sleep(8000);
+                // Pause for 5 seconds to allow Application Architect to close
+                Thread.Sleep(5000);
 
                 InstallationAction action = new InstallationAction();
+                action.ActionEvent += new ActionEventHandler(action_ActionEvent);
                 action.Start();
 
                 if (action.AssemblyUpdated)
@@ -67,6 +69,11 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());
             }
+        }
+
+        static void action_ActionEvent(object source, ActionEventArgs e)
+        {
+            Debug.WriteLine("GitExtensionsInstaller: " + e.ActionDescription);
         }
 
         private static void SetAppLocation()

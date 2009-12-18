@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net;
+using System.Net.Cache;
 using System.IO;
 using Microsoft.Win32;
 
@@ -11,6 +12,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
     public class InstallationAction
     {
         public bool AssemblyUpdated = false;
+        public bool AppArchitectRunningFailure = false;
         public int TotalSteps = 5;
         public event ActionEventHandler ActionEvent;
 
@@ -21,9 +23,12 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
         public void Start()
         {
+            _installstep = 0;
+
             RaiseInstallEvent("Initializing installation");
             if (CheckApplicationRunning())
             {
+                AppArchitectRunningFailure = true;
                 RaiseInstallEvent("Application Architect is currently running. Close and try again.", TotalSteps);
                 return;
             }
@@ -59,6 +64,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             try
             {
                 WebClient client = new WebClient();
+                client.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
                 client.DownloadFile(_FILEURL, localfile);
             }
             catch (Exception ex)
