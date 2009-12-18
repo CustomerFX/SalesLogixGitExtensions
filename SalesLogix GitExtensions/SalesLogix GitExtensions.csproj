@@ -124,7 +124,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>"$(SolutionDir)Solution Misc\ProjectOutputUpdater.exe" "$(TargetPath)" "$(TargetDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>

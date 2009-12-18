@@ -2,6 +2,7 @@
 Thumbs.db
 *.obj
 *.exe
+!ProjectOutputUpdater.exe
 *.pdb
 *.user
 *.aps
