@@ -72,13 +72,22 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             this.labelProgress = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.pictureBoxCfx = new System.Windows.Forms.PictureBox();
+            this.panelNoGitExt = new System.Windows.Forms.Panel();
+            this.labelNoGitExt = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.linkLabelGetGitExt = new System.Windows.Forms.LinkLabel();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCfx)).BeginInit();
+            this.panelNoGitExt.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.White;
+            this.panelHeader.Controls.Add(this.pictureBoxCfx);
             this.panelHeader.Controls.Add(this.pictureBoxLogo);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
@@ -186,6 +195,62 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "Git Extensions for SalesLogix Updater";
             // 
+            // pictureBoxCfx
+            // 
+            this.pictureBoxCfx.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxCfx.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCfx.Image")));
+            this.pictureBoxCfx.Location = new System.Drawing.Point(414, 24);
+            this.pictureBoxCfx.Name = "pictureBoxCfx";
+            this.pictureBoxCfx.Size = new System.Drawing.Size(107, 23);
+            this.pictureBoxCfx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxCfx.TabIndex = 1;
+            this.pictureBoxCfx.TabStop = false;
+            this.pictureBoxCfx.Click += new System.EventHandler(this.pictureBoxCfx_Click);
+            // 
+            // panelNoGitExt
+            // 
+            this.panelNoGitExt.BackColor = System.Drawing.SystemColors.Info;
+            this.panelNoGitExt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelNoGitExt.Controls.Add(this.linkLabelGetGitExt);
+            this.panelNoGitExt.Controls.Add(this.pictureBox1);
+            this.panelNoGitExt.Controls.Add(this.labelNoGitExt);
+            this.panelNoGitExt.Location = new System.Drawing.Point(10, 363);
+            this.panelNoGitExt.Name = "panelNoGitExt";
+            this.panelNoGitExt.Size = new System.Drawing.Size(258, 52);
+            this.panelNoGitExt.TabIndex = 9;
+            this.panelNoGitExt.Visible = false;
+            // 
+            // labelNoGitExt
+            // 
+            this.labelNoGitExt.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNoGitExt.Location = new System.Drawing.Point(24, 3);
+            this.labelNoGitExt.Name = "labelNoGitExt";
+            this.labelNoGitExt.Size = new System.Drawing.Size(234, 41);
+            this.labelNoGitExt.TabIndex = 0;
+            this.labelNoGitExt.Text = "Git Extensions does not appear to be installed. This is required for Git Extensio" +
+                "ns for SalesLogix to function.";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(6, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // linkLabelGetGitExt
+            // 
+            this.linkLabelGetGitExt.AutoSize = true;
+            this.linkLabelGetGitExt.Location = new System.Drawing.Point(23, 31);
+            this.linkLabelGetGitExt.Name = "linkLabelGetGitExt";
+            this.linkLabelGetGitExt.Size = new System.Drawing.Size(55, 13);
+            this.linkLabelGetGitExt.TabIndex = 2;
+            this.linkLabelGetGitExt.TabStop = true;
+            this.linkLabelGetGitExt.Text = "Download";
+            this.linkLabelGetGitExt.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGetGitExt_LinkClicked);
+            // 
             // MainForm
             // 
             this.AcceptButton = this.buttonStart;
@@ -193,6 +258,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(537, 429);
+            this.Controls.Add(this.panelNoGitExt);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.labelProgress);
             this.Controls.Add(this.buttonCancel);
@@ -212,6 +278,10 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCfx)).EndInit();
+            this.panelNoGitExt.ResumeLayout(false);
+            this.panelNoGitExt.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +300,11 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         private System.Windows.Forms.Label labelProgress;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.PictureBox pictureBoxCfx;
+        private System.Windows.Forms.Panel panelNoGitExt;
+        private System.Windows.Forms.Label labelNoGitExt;
+        private System.Windows.Forms.LinkLabel linkLabelGetGitExt;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

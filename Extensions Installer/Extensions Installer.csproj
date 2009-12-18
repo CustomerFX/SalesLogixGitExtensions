@@ -71,6 +71,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Utility\ControlHelper.cs" />
+    <Compile Include="Utility\ExtensionsHelper.cs" />
     <Compile Include="Utility\FileHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

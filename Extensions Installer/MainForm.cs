@@ -49,6 +49,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         {
             InitializeComponent();
 
+            panelNoGitExt.Visible = (!Utility.ExtensionsHelper.IsInstalled);
+
             if (Program.AutoRun)
             {
                 this.Hide(); this.Visible = false;
@@ -87,7 +89,10 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
                     {
                         if (notifyIcon1.Visible)
                         {
-                            if (_action.AssemblyUpdated) notifyIcon1.ShowBalloonTip(5000);
+                            if (_action.AssemblyUpdated)
+                                notifyIcon1.ShowBalloonTip(5000);
+                            else
+                                Utility.ControlHelper.CloseForm(this);
                         }
                         else
                         {
@@ -108,6 +113,16 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void pictureBoxCfx_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://customerfx.com/");
+        }
+
+        private void linkLabelGetGitExt_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Utility.ExtensionsHelper.GitExtensionsUrl);
         }
     }
 }

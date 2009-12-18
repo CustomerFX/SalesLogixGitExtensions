@@ -35,6 +35,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer.Utility
                 FileVersionInfo file1Version = FileVersionInfo.GetVersionInfo(file1);
                 FileVersionInfo file2Version = FileVersionInfo.GetVersionInfo(file2);
 
+                Debug.WriteLine("Current file version " + file1Version.FileVersion + ", new file version " + file2Version.FileVersion);
+
                 // Check major.
                 if (file1Version.FileMajorPart > file2Version.FileMajorPart)
                 {

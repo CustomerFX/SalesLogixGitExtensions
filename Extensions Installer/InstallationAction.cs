@@ -55,6 +55,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         private string DownloadFile()
         {
             string localfile = Path.Combine(Path.GetTempPath(), _FILENAME);
+            Debug.WriteLine("GitExtensionsInstaller: Downloading to " + localfile);
+
             try
             {
                 if (File.Exists(localfile)) File.Delete(localfile);
@@ -65,12 +67,12 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             {
                 WebClient client = new WebClient();
                 client.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
-                client.DownloadFile(_FILEURL, localfile);
+                client.DownloadFile(string.Format("{0}?q={0}", _FILEURL, Environment.TickCount), localfile);                
             }
             catch (Exception ex)
             {
                 localfile = string.Empty;
-                RaiseInstallEvent("An error occurred downloading the assembly from github", TotalSteps);
+                RaiseInstallEvent("An error occurred downloading the assembly from github. " + ex.Message, TotalSteps);
             }
 
             return localfile;
@@ -80,9 +82,6 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         {
             string slxfilelocation = Path.Combine(Path.Combine(GetSalesLogixRoot(), @"Modules\"), _FILENAME);
             if (!File.Exists(slxfilelocation)) return true;
-
-            FileVersionInfo newfileversion = FileVersionInfo.GetVersionInfo(file);
-            FileVersionInfo slxfileversion = FileVersionInfo.GetVersionInfo(slxfilelocation);
 
             Utility.FileComparison filecompare = Utility.FileHelper.CompareFileVersions(slxfilelocation, file);
             if (filecompare != Utility.FileComparison.Older)
@@ -161,6 +160,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
         private void RaiseInstallEvent(string description, int step)
         {
+            Debug.WriteLine("GitExtensionsInstaller: " + description);
+
             if (ActionEvent != null)
                 ActionEvent(this, new ActionEventArgs(description, step));
 

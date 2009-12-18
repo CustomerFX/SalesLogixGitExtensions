@@ -50,8 +50,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
             if (args.Length > 0 && args[0].ToLower() == "auto")
             {
-                // Pause for 5 seconds to allow Application Architect to close
-                Thread.Sleep(5000);
+                // Pause for 2 seconds to allow Application Architect to close
+                Thread.Sleep(2000);
                 AutoRun = true;
             }
 
@@ -59,11 +59,6 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
         }
-
-        //static void action_ActionEvent(object source, ActionEventArgs e)
-        //{
-        //    Debug.WriteLine("GitExtensionsInstaller: " + e.ActionDescription);
-        //}
 
         private static void SetAppLocation()
         {
