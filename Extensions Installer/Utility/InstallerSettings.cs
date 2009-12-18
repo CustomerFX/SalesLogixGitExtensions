@@ -80,6 +80,13 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer.Utility
                 this.ProxyPasswordEncrypted = SecurityUtility.DESEncrypt(value);
             }
         }
+
+        private bool _disableautoupdate = false;
+        public bool DisableAutoUpdate
+        {
+            get { return this._disableautoupdate; }
+            set { this._disableautoupdate = value; }
+        }
     }
 
     public class InstallerSettingsSerializer

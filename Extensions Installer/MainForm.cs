@@ -51,6 +51,9 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
             panelNoGitExt.Visible = (!Utility.ExtensionsHelper.IsInstalled);
 
+            Utility.InstallerSettings settings = Utility.InstallerSettingsSerializer.Deserialize();
+            checkDisableAutoUpdates.Checked = settings.DisableAutoUpdate;
+
             if (Program.AutoRun)
             {
                 this.Hide(); this.Visible = false;
@@ -159,6 +162,13 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
                     Utility.InstallerSettingsSerializer.Serialize(settings);
                 }
             }
+        }
+
+        private void checkDisableAutoUpdates_CheckedChanged(object sender, EventArgs e)
+        {
+            Utility.InstallerSettings settings = Utility.InstallerSettingsSerializer.Deserialize();
+            settings.DisableAutoUpdate = checkDisableAutoUpdates.Checked;
+            Utility.InstallerSettingsSerializer.Serialize(settings);
         }
     }
 }

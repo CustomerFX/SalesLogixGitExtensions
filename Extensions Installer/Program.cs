@@ -50,6 +50,14 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
             if (args.Length > 0 && args[0].ToLower() == "auto")
             {
+                // Check is autoupdate is disabled
+                Utility.InstallerSettings settings = Utility.InstallerSettingsSerializer.Deserialize();
+                if (settings.DisableAutoUpdate)
+                {
+                    Debug.WriteLine("GitExtensionsInstaller: Exiting, autoupdate is disabled");
+                    return;
+                }
+
                 // Pause for 2 seconds to allow Application Architect to close
                 Thread.Sleep(2000);
                 AutoRun = true;
