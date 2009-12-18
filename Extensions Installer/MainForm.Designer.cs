@@ -59,6 +59,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelHeader = new System.Windows.Forms.Panel();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -70,6 +71,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             this.buttonCancel = new System.Windows.Forms.Button();
             this.labelProgress = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -176,6 +178,14 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             this.progressBar1.TabIndex = 8;
             this.progressBar1.Visible = false;
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon1.BalloonTipText = "Git Extensions for SalesLogix has been updated.";
+            this.notifyIcon1.BalloonTipTitle = "Git Extensions for SalesLogix";
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "Git Extensions for SalesLogix Updater";
+            // 
             // MainForm
             // 
             this.AcceptButton = this.buttonStart;
@@ -219,6 +229,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label labelProgress;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

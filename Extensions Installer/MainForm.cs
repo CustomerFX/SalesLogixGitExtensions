@@ -48,6 +48,17 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         public MainForm()
         {
             InitializeComponent();
+
+            if (Program.AutoRun)
+            {
+                this.Hide(); this.Visible = false;
+                this.ShowInTaskbar = false;
+                this.WindowState = FormWindowState.Minimized;
+                notifyIcon1.Visible = true;
+                notifyIcon1.BalloonTipClosed += new EventHandler(notifyIcon1_BalloonTipClosed);
+
+                buttonStart_Click(null, EventArgs.Empty);
+            }
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
@@ -74,11 +85,24 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 
                     if (!_action.AppArchitectRunningFailure)
                     {
-                        Utility.ControlHelper.SetControlVisible(buttonStart, false);
-                        Utility.ControlHelper.SetControlText(buttonCancel, "Close");
+                        if (notifyIcon1.Visible)
+                        {
+                            if (_action.AssemblyUpdated) notifyIcon1.ShowBalloonTip(5000);
+                        }
+                        else
+                        {
+                            Utility.ControlHelper.SetControlVisible(buttonStart, false);
+                            Utility.ControlHelper.SetControlText(buttonCancel, "Close");
+                        }
                     }
                 }
             }
+        }
+
+        void notifyIcon1_BalloonTipClosed(object sender, EventArgs e)
+        {
+            notifyIcon1.Visible = false;
+            this.Close();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

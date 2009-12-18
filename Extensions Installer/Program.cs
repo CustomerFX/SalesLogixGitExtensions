@@ -41,9 +41,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        public static bool AutoRun = false;
+
         [STAThread]
         static void Main(string[] args)
         {
@@ -53,28 +52,18 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
             {
                 // Pause for 5 seconds to allow Application Architect to close
                 Thread.Sleep(5000);
-
-                InstallationAction action = new InstallationAction();
-                action.ActionEvent += new ActionEventHandler(action_ActionEvent);
-                action.Start();
-
-                if (action.AssemblyUpdated)
-                {
-                    MessageBox.Show("Git Extensions for SalesLogix has been updated!", "Update Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                AutoRun = true;
             }
-            else
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm());
-            }
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
         }
 
-        static void action_ActionEvent(object source, ActionEventArgs e)
-        {
-            Debug.WriteLine("GitExtensionsInstaller: " + e.ActionDescription);
-        }
+        //static void action_ActionEvent(object source, ActionEventArgs e)
+        //{
+        //    Debug.WriteLine("GitExtensionsInstaller: " + e.ActionDescription);
+        //}
 
         private static void SetAppLocation()
         {
