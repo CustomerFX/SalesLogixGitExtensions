@@ -1,4 +1,4 @@
-< img src="http://cloud.github.com/downloads/CustomerFX/SalesLogixGitExtensions/logo.png">
+<img src="http://cloud.github.com/downloads/CustomerFX/SalesLogixGitExtensions/logo.png">
 
 <h1>Git Extensions for SalesLogix</h1>
 
