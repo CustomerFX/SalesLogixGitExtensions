@@ -10,8 +10,9 @@ Git Extensions for SalesLogix is an addin for the SalesLogix Application Archite
 
 Git Extensions is a toolkit to make working with Git on Windows more intuitive. Git Extensions is a required part of Git Extensions for SalesLogix and is installed separately. To use Git Extensions for SalesLogix, it is assumed that you have mSysGit & Git Extensions installed and configured correctly. <a href="http://code.google.com/p/gitextensions/" target=_blank>Download Git Extensions (which will also install mSysGit as well)</a>.
 
-. 
+<h1>Project Contact</h1>
 For contact information about this project, contact:
 
-Ryan Farley - <a href="http://crmdeveloper.com/" target=_blank>crmdeveloper.com 
-Customer FX Corporation
+Ryan Farley - <a href="http://crmdeveloper.com/" target=_blank>crmdeveloper.com</a> 
+<a href="http://customerfx.com/" target=_blank>Customer FX Corporation</a>
+
