@@ -94,15 +94,15 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         {
             bool newavail = false;
 
-            if (!File.Exists(Path.Combine(Path.Combine(GetSalesLogixRoot(), @"Modules\"), _FILENAME))) newavail = true;
-
-            Version currentversion = new Version(FileVersionInfo.GetVersionInfo(Path.Combine(Path.Combine(GetSalesLogixRoot(), @"Modules\"), _FILENAME)).FileVersion);
-            if (currentversion.CompareTo(GetAvailableFileVersion()) < 0)
-            {
-                RaiseInstallEvent("An update is available!");
+            if (!File.Exists(Path.Combine(Path.Combine(GetSalesLogixRoot(), @"Modules\"), _FILENAME)))
                 newavail = true;
+            else
+            {
+                Version currentversion = new Version(FileVersionInfo.GetVersionInfo(Path.Combine(Path.Combine(GetSalesLogixRoot(), @"Modules\"), _FILENAME)).FileVersion);
+                if (currentversion.CompareTo(GetAvailableFileVersion()) < 0) newavail = true;
             }
 
+            if (newavail) RaiseInstallEvent("An update is available!");
             if (!newavail) RaiseInstallEvent("There is not a newer version available. You are already up to date", TotalSteps);
 
             return newavail;
