@@ -227,21 +227,43 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer
         private string GetSalesLogixRoot()
         {
             string path = string.Empty;
+            RegistryKey key = null;
+
+            // Check 32-bit location
             try
             {
-                RegistryKey key = null;
                 key = Registry.LocalMachine.OpenSubKey(@"Software\SalesLogix", false);
                 if (key != null)
                 {
-                    object o = key.GetValue("Path");
-                    if (o != null)
+                    object o32 = key.GetValue("Path");
+                    if (o32 != null)
                     {
-                        path = o.ToString();
-                        if (!Directory.Exists(o.ToString())) path = string.Empty;
+                        path = o32.ToString();
+                        if (!Directory.Exists(path)) path = string.Empty;
                     }
                 }
             }
             catch { }
+
+            //check 64-bit location
+            if (path == string.Empty)
+            {
+                try
+                {
+                    key = Registry.LocalMachine.OpenSubKey(@"Software\Wow6432Node\SalesLogix", false);
+                    if (key != null)
+                    {
+                        object o64 = key.GetValue("Path");
+                        if (o64 != null)
+                        {
+                            path = o64.ToString();
+                            if (!Directory.Exists(path)) path = string.Empty;
+                        }
+                    }
+                }
+                catch { }
+            }
+
             return path;
         }
 
