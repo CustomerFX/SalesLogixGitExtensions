@@ -7,12 +7,12 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Customer FX Corporation")]
 [assembly: AssemblyProduct("SalesLogix Git Extensions")]
-[assembly: AssemblyCopyright("Copyright ©  2009 Customer FX Corporation")]
+[assembly: AssemblyCopyright("Copyright ©  2010 Customer FX Corporation")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 [assembly: Guid("e3af0753-df3b-4c73-a26a-5c8af450ffbd")]
 
-[assembly: AssemblyVersion("1.0.0.13")]
-[assembly: AssemblyFileVersion("1.0.0.13")]
+[assembly: AssemblyVersion("1.0.0.14")]
+[assembly: AssemblyFileVersion("1.0.0.14")]
