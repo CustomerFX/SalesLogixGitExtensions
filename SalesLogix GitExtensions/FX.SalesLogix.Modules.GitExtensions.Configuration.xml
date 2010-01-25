@@ -41,7 +41,21 @@
 	</Localization>
 
 	<UIElements>
-    <UIExtensionSite Uri="mnu://MainMenu/Tools" TypeTemplate="System.Windows.Forms.{0}, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <UIExtensionSite Uri="mnu://MainMenu" TypeTemplate="System.Windows.Forms.{0}, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <ChildElements>
+        <UIElement Uri="mnu://MainMenu/Git" 
+                   RegisterAsSite="true" 
+                   TypeName="ToolStripMenuItem" 
+                   RegistrationPropertyName="DropDownItems"
+                   PositionRefUri="mnu://MainMenu/Tools" 
+                   UIElementPosition="AfterUri" >
+          <Properties>
+            <Property Name="Text">Git Extensions</Property>
+          </Properties>
+        </UIElement>
+      </ChildElements>
+    </UIExtensionSite>
+    <UIExtensionSite Uri="mnu://MainMenu/Git" TypeTemplate="System.Windows.Forms.{0}, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <ChildElements>
         <UIElement TypeName="ToolStripSeparator" Uri="mnu://MainMenu/GitExtensionsModule/sep0" />
         <UIElement Uri="cmd://MainMenu/Git/GitExtensions"
