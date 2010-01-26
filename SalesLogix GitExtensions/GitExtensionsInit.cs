@@ -215,6 +215,15 @@ namespace FX.SalesLogix.Modules.GitExtensions
             }
         }
 
+        [CommandHandler(Commands.Feedback)]
+        public void FeedbackClick(object sender, EventArgs e)
+        {
+            using (UI.FeedbackDialog dlg = new UI.FeedbackDialog())
+            {
+                dlg.ShowDialog();
+            }
+        }
+
         #endregion
 
         #region Environment Check Actions

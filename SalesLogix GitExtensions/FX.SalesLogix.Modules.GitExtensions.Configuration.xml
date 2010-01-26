@@ -57,7 +57,6 @@
     </UIExtensionSite>
     <UIExtensionSite Uri="mnu://MainMenu/Git" TypeTemplate="System.Windows.Forms.{0}, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <ChildElements>
-        <UIElement TypeName="ToolStripSeparator" Uri="mnu://MainMenu/GitExtensionsModule/sep0" />
         <UIElement Uri="cmd://MainMenu/Git/GitExtensions"
 						       TypeName="ToolStripMenuItem"
 						       Command="cmd://GitExtensionsModule/GitExtensions">
@@ -183,6 +182,7 @@
             <Property Name="Image">{Resource:SettingsImage}</Property>
           </Properties>
         </UIElement>
+        <UIElement TypeName="ToolStripSeparator" Uri="mnu://MainMenu/GitExtensionsModule/sep0" />
         <UIElement Uri="cmd://MainMenu/Git/About"
 						       TypeName="ToolStripMenuItem"
 						       Command="cmd://GitExtensionsModule/About">
@@ -191,7 +191,14 @@
             <Property Name="Image">{Resource:AboutImage}</Property>
           </Properties>
         </UIElement>
-        <UIElement TypeName="ToolStripSeparator" Uri="mnu://MainMenu/GitExtensionsModule/sep1" />
+        <UIElement Uri="cmd://MainMenu/Git/Feedback"
+           TypeName="ToolStripMenuItem"
+           Command="cmd://GitExtensionsModule/Feedback">
+          <Properties>
+            <Property Name="Text">{Resource:FeedbackText}</Property>
+            <Property Name="Image">{Resource:FeedbackImage}</Property>
+          </Properties>
+        </UIElement>
       </ChildElements>
     </UIExtensionSite>
 		<UIExtensionSite Uri="tb://IDE" TypeTemplate="System.Windows.Forms.{0}, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

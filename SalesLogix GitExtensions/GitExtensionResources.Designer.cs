@@ -196,6 +196,31 @@ namespace FX.SalesLogix.Modules.GitExtensions {
             }
         }
         
+        internal static System.Drawing.Bitmap FeedbackImage {
+            get {
+                object obj = ResourceManager.GetObject("FeedbackImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit Feedback.
+        /// </summary>
+        internal static string FeedbackText {
+            get {
+                return ResourceManager.GetString("FeedbackText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit feedback about Git Extensions for SalesLogix.
+        /// </summary>
+        internal static string FeedbackTooltip {
+            get {
+                return ResourceManager.GetString("FeedbackTooltip", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap GitBashImage {
             get {
                 object obj = ResourceManager.GetObject("GitBashImage", resourceCulture);
