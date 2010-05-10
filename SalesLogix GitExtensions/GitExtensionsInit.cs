@@ -45,7 +45,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
     public class GitExtensionsInit : ModuleInit<UIWorkItem>, IModuleConfigurationProvider
     {
         private IProjectContextService _projectContextService;
-        private static readonly ILog _log = LogManager.GetLogger("FX.Modules");
+        private static readonly ILog _log = LogManager.GetLogger("GitExtensions");
 
         protected override void Load()
         {

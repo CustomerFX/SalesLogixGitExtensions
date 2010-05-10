@@ -36,11 +36,14 @@ using System.Text;
 using System.IO;
 using System.Diagnostics;
 using Microsoft.Win32;
+using log4net;
 
 namespace FX.SalesLogix.Modules.GitExtensions.Connectors
 {
     public class ExtensionsConnector
     {
+		private static readonly ILog _log = LogManager.GetLogger("GitExtensions");
+
         public static string Executable = "GitExtensions.exe";
 
         public static bool IsInstalled
@@ -79,6 +82,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
                     }
                 }
                 catch { }
+				_log.Info("Extensions path: " + path);
                 return path;
             }
         }
@@ -106,6 +110,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
                     }
                 }
                 catch { }
+				_log.Info("Bash path: " + path);
                 return path;
             }
         }
@@ -274,20 +279,27 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
 
         public static void ShellCommand(string command, string arg, bool wait)
         {
-            try
-            {
-                if (ExtensionsPath == string.Empty) throw new Exception("Git Extensions is not installed. Git Extensions must be installed to use Git Extensions for SalesLogix.");
-                using (Process p = new Process())
-                {
-                    p.StartInfo.UseShellExecute = true;
-                    p.StartInfo.FileName = ExtensionsConnector.ExtensionsFile;
-                    p.StartInfo.WorkingDirectory = WorkspaceConnector.ProjectPathRoot;
-                    if (command != null) p.StartInfo.Arguments = command + (arg == null ? string.Empty : " " + arg);
-                    p.Start();
-                    if (wait) p.WaitForExit();
-                }
-            }
-            catch { throw; }
+			try
+			{
+				_log.Info("Shell command " + command + " with args " + arg);
+
+				if (ExtensionsPath == string.Empty) throw new Exception("Git Extensions is not installed. Git Extensions must be installed to use Git Extensions for SalesLogix.");
+				using (Process p = new Process())
+				{
+					p.StartInfo.UseShellExecute = true;
+					p.StartInfo.FileName = ExtensionsConnector.ExtensionsFile;
+					p.StartInfo.WorkingDirectory = WorkspaceConnector.ProjectPathRoot;
+					if (command != null) p.StartInfo.Arguments = command + (arg == null ? string.Empty : " " + arg);
+					p.Start();
+					if (wait) p.WaitForExit();
+					_log.Info("Command " + command + " executed");
+				}
+			}
+			catch (Exception ex)
+			{
+				_log.Error(ex.Message, ex);
+				throw new Exception("Error executing command " + command + ".", ex);
+			}
         }
 
         public static void ShellBash()

@@ -1,13 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesLogix GitExtensions", "SalesLogix GitExtensions\SalesLogix GitExtensions.csproj", "{CDE9A291-6E4F-4AA2-9654-C7770956BFD3}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E1479090-AD88-4C86-B2AE-2F817ECC0436}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesLogix GitExtensions", "SalesLogix GitExtensions\SalesLogix GitExtensions.csproj", "{CDE9A291-6E4F-4AA2-9654-C7770956BFD3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions Installer", "Extensions Installer\Extensions Installer.csproj", "{899327AB-61EE-4584-BE22-10481A24EBB4}"
 EndProject
