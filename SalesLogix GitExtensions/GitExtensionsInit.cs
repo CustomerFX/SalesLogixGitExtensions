@@ -271,6 +271,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
                             MessageBoxIcon.Question
                             ) == DialogResult.Yes)
             {
+				_log.Info("Start process to create repo and .gitignore");
                 ExtensionsConnector.Init();
                 WorkspaceConnector.AddStandardIgnore();
             }

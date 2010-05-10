@@ -281,8 +281,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
         {
 			try
 			{
-				_log.Info("Shell command " + command + " with args " + arg);
-
+				_log.Info("Shell command " + command + " with args " + arg ?? string.Empty);
+				
 				if (ExtensionsPath == string.Empty) throw new Exception("Git Extensions is not installed. Git Extensions must be installed to use Git Extensions for SalesLogix.");
 				using (Process p = new Process())
 				{
