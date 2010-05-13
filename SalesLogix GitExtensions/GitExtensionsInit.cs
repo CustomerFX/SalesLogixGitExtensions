@@ -149,6 +149,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Checkout();
+			WorkspaceConnector.Reload();
         }
 
         [CommandHandler(Commands.Merge)]
@@ -156,6 +157,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         {
             if (!EnvironmentCheck()) return;
             ExtensionsConnector.Merge();
+			WorkspaceConnector.Reload();
         }
 
         [CommandHandler(Commands.ViewChanges)]

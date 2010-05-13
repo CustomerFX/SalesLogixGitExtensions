@@ -209,7 +209,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
         {
             try
             {
-                ShellCommand("checkout");
+                ShellCommand("checkout", true);
+
             }
             catch { throw; }
         }
@@ -218,7 +219,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
         {
             try
             {
-                ShellCommand("merge");
+                ShellCommand("merge", true);
             }
             catch { throw; }
         }
