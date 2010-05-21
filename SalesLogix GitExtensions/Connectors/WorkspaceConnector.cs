@@ -129,13 +129,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
 					writer.WriteLine(writer.NewLine);
 
 					writer.WriteLine("# Standard deployment files");
-					writer.WriteLine("*/deployment/webroot/common/[Ss]mart[Pp]arts/**/*");
-					writer.WriteLine("*/deployment/webroot/common/[Ss]mart[Pp]arts/**/**/*");
-					writer.WriteLine("*/deployment/webroot/common/[Ss]ummary[Cc]onfig[Dd]ata/*");
-					writer.WriteLine("*/deployment/webroot/common/bin/*");
-					writer.WriteLine("*/deployment/webroot/common/*");
-					writer.WriteLine("*/deployment/common/bin/[Ss]age.[Ee]ntity.[Ii]nterfaces.dll");
-					writer.WriteLine("*/deployment/common/bin/[Ss]age.[Ff]orm.[Ii]nterfaces.dll");
+					writer.WriteLine("[Mm]odel/[Dd]eployment");
 					writer.WriteLine(writer.NewLine);
 
 					writer.Close();
