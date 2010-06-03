@@ -128,7 +128,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
         {
             try
             {
-                ShellCommand("init", true);
+				ShellCommand("init", "\"" + WorkspaceConnector.ProjectPathRoot, true);
             }
             catch { throw; }
         }
