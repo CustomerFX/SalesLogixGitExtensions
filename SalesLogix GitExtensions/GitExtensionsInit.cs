@@ -172,7 +172,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         [CommandHandler(Commands.Bash)]
         public void GitBashClick(object sender, EventArgs e)
         {
-            if (!ExtensionsConnector.IsInstalled) { NoExtensionsAction(); return; }
+			if (!EnvironmentCheck()) return;
             ExtensionsConnector.ShellBash();
         }
 
