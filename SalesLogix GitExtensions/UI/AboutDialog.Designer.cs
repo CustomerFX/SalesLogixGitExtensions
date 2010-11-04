@@ -124,9 +124,10 @@ namespace FX.SalesLogix.Modules.GitExtensions.UI
 			// labelVersion
 			// 
 			this.labelVersion.AutoSize = true;
+			this.labelVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.labelVersion.Location = new System.Drawing.Point(38, 115);
 			this.labelVersion.Name = "labelVersion";
-			this.labelVersion.Size = new System.Drawing.Size(45, 13);
+			this.labelVersion.Size = new System.Drawing.Size(53, 13);
 			this.labelVersion.TabIndex = 3;
 			this.labelVersion.Text = "Version ";
 			// 
