@@ -364,20 +364,19 @@ namespace FX.SalesLogix.Modules.GitExtensions
 				log.LogInformation("---\r\n");
 			}
 
-			DateTime logStamp = DateTime.Now;
 			if (Message.Trim() == string.Empty) return;
-			Message = Message.Replace("\r\n", string.Format("\r\n{0} {1} ", OutputType.ToString().ToUpper(), logStamp));
+			Message = Message.Replace("\r\n", string.Format("\r\n{0} ", OutputType.ToString().ToUpper()));
 
 			switch (OutputType)
 			{
 				case OutputLogType.Warn:
-					log.LogWarning(string.Format("WARN {0} {1}\r\n", logStamp, Message));
+					log.LogWarning(string.Format("WARN {0}\r\n", Message));
 					break;
 				case OutputLogType.Error:
-					log.LogError(string.Format("ERROR {0} {1}\r\n", logStamp, Message));
+					log.LogError(string.Format("ERROR {0}\r\n", Message));
 					break;
 				default:
-					log.LogInformation(string.Format("INFO {0} {1}\r\n", logStamp, Message));
+					log.LogInformation(string.Format("INFO {0}\r\n", Message));
 					break;
 			}
 		}
