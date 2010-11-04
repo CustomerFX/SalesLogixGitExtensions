@@ -56,5 +56,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Constants
         public const string OpenFolder = "cmd://GitExtensionsModule/OpenFolder";
         public const string ManageRemotes = "cmd://GitExtensionsModule/ManageRemotes";
         public const string Feedback = "cmd://GitExtensionsModule/Feedback";
+
+		public const string ShowControlPanel = "cmd://GitExtensionsModule/ShowControlPanel";
     }
 }

@@ -51,18 +51,22 @@ namespace FX.SalesLogix.Modules.GitExtensions
 
     public class GitExtensionsInit : ModuleInit<UIWorkItem>, IModuleConfigurationProvider
     {
+		private SmartParts.GitControlPanel _controlPanelSmartPart;
+
         private IProjectContextService _projectContextService;
         private static readonly ILog _log = LogManager.GetLogger("GitExtensions");
 
         protected override void Load()
         {
             _log.Info("Loading " + GitExtensionResources.ModuleName);
-            this.ModuleWorkItem.RootWorkItem.Terminated += new EventHandler(RootWorkItem_Terminated);
-        }
 
-        private void RootWorkItem_Terminated(object sender, EventArgs e)
-        {
-            Utility.AssemblyUpdate.Start();
+			base.ModuleWorkItem.Terminating += new EventHandler(ModuleWorkItem_Terminating);
+			this.ModuleWorkItem.RootWorkItem.Terminated += new EventHandler(RootWorkItem_Terminated);
+
+			IWorkspace workspaceDocking = base.ModuleWorkItem.Workspaces["ws://Docking"];
+			workspaceDocking.SmartPartClosing += new EventHandler<WorkspaceCancelEventArgs>(this.DockingWorkspace_SmartPartClosing);
+			
+			ReloadControlPanelState();
         }
 
         public override string ToString()
@@ -70,9 +74,40 @@ namespace FX.SalesLogix.Modules.GitExtensions
             return GitExtensionResources.ModuleName;
         }
 
-        #region Module Configuration
+		#region Workspace Event Handlers
 
-        public ModuleConfiguration GetConfiguration()
+		private void RootWorkItem_Terminated(object sender, EventArgs e)
+		{
+			Utility.AssemblyUpdate.Start();
+		}
+
+		private void ModuleWorkItem_Terminating(object sender, EventArgs e)
+		{
+			base.ModuleWorkItem.Save();
+		}
+
+		private void DockingWorkspace_SmartPartClosing(object sender, WorkspaceCancelEventArgs e)
+		{
+			if (e.SmartPart is SmartParts.GitControlPanel)
+			{
+				base.ModuleWorkItem.State["GitControlPanel"] = false;
+			}
+		}
+
+		private void ReloadControlPanelState()
+		{
+			object objState = base.ModuleWorkItem.State["GitControlPanel"];
+			if ((objState != null) && ((bool)objState))
+			{
+				this.ShowControlPanel(this, EventArgs.Empty);
+			}
+		}
+
+		#endregion
+
+		#region Module Configuration
+
+		public ModuleConfiguration GetConfiguration()
         {
             return ModuleConfiguration.LoadFromResource("FX.SalesLogix.Modules.GitExtensions.FX.SalesLogix.Modules.GitExtensions.Configuration.xml", base.GetType().Assembly);
         }
@@ -262,6 +297,30 @@ namespace FX.SalesLogix.Modules.GitExtensions
                 dlg.ShowDialog();
             }
         }
+
+		[CommandHandler(Commands.ShowControlPanel)]
+		public void ShowControlPanel(object sender, EventArgs e)
+		{
+			if (base.ModuleWorkItem.Workspaces.Contains("ws://Docking"))
+			{
+				IWorkspace workspace = base.ModuleWorkItem.Workspaces["ws://Docking"];
+				if (this._controlPanelSmartPart == null)
+				{
+					this._controlPanelSmartPart = base.ModuleWorkItem.Items.AddNew<SmartParts.GitControlPanel>();
+					this._controlPanelSmartPart.Name = GitExtensionResources.ControlPanelText;
+				}
+				if (workspace.SmartParts.Contains(this._controlPanelSmartPart))
+				{
+					base.ModuleWorkItem.State["GitControlPanel"] = true;
+					workspace.Activate(this._controlPanelSmartPart);
+				}
+				else
+				{
+					base.ModuleWorkItem.State["GitControlPanel"] = true;
+					workspace.Show(this._controlPanelSmartPart);
+				}
+			}
+		}
 
         #endregion
 

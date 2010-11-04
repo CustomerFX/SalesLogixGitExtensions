@@ -196,6 +196,31 @@ namespace FX.SalesLogix.Modules.GitExtensions {
             }
         }
         
+        internal static System.Drawing.Bitmap ControlHome {
+            get {
+                object obj = ResourceManager.GetObject("ControlHome", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Git Extensions Control Panel.
+        /// </summary>
+        internal static string ControlPanelText {
+            get {
+                return ResourceManager.GetString("ControlPanelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View the Git Extensions Control Panel.
+        /// </summary>
+        internal static string ControlPanelTooltip {
+            get {
+                return ResourceManager.GetString("ControlPanelTooltip", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap FeedbackImage {
             get {
                 object obj = ResourceManager.GetObject("FeedbackImage", resourceCulture);

@@ -57,6 +57,15 @@
     </UIExtensionSite>
     <UIExtensionSite Uri="mnu://MainMenu/Git" TypeTemplate="System.Windows.Forms.{0}, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <ChildElements>
+				<UIElement Uri="cmd://MainMenu/Git/ControlPanel"
+						       TypeName="ToolStripMenuItem"
+						       Command="cmd://GitExtensionsModule/ShowControlPanel">
+					<Properties>
+						<Property Name="Text">{Resource:ControlPanelText}</Property>
+						<Property Name="Image">{Resource:ControlHome}</Property>
+					</Properties>
+				</UIElement>
+				<UIElement TypeName="ToolStripSeparator" Uri="mnu://MainMenu/GitExtensionsModule/sep0" />
         <UIElement Uri="cmd://MainMenu/Git/GitExtensions"
 						       TypeName="ToolStripMenuItem"
 						       Command="cmd://GitExtensionsModule/GitExtensions">
@@ -182,7 +191,7 @@
             <Property Name="Image">{Resource:SettingsImage}</Property>
           </Properties>
         </UIElement>
-        <UIElement TypeName="ToolStripSeparator" Uri="mnu://MainMenu/GitExtensionsModule/sep0" />
+        <UIElement TypeName="ToolStripSeparator" Uri="mnu://MainMenu/GitExtensionsModule/sep1" />
         <UIElement Uri="cmd://MainMenu/Git/About"
 						       TypeName="ToolStripMenuItem"
 						       Command="cmd://GitExtensionsModule/About">
@@ -203,6 +212,16 @@
     </UIExtensionSite>
 		<UIExtensionSite Uri="tb://IDE" TypeTemplate="System.Windows.Forms.{0}, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
 			<ChildElements>
+				<UIElement Uri="tb://IDE/GitExtensionsModule/ControlPanel"
+						       TypeName="ToolStripButton"
+						       Command="cmd://GitExtensionsModule/ShowControlPanel">
+					<Properties>
+						<Property Name="Text">{Resource:ControlPanelText}</Property>
+						<Property Name="Image">{Resource:ControlHome}</Property>
+						<Property Name="DisplayStyle">Image</Property>
+						<Property Name="ToolTipText">{Resource:ControlPanelTooltip}</Property>
+					</Properties>
+				</UIElement>
         <UIElement Uri="tb://IDE/GitExtensionsModule/GitExtensions"
 						       TypeName="ToolStripButton"
 						       Command="cmd://GitExtensionsModule/GitExtensions">
