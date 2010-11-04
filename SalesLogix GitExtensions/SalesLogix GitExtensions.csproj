@@ -54,33 +54,27 @@
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Referenced Assemblies\log4net.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Unity, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Referenced Assemblies\Microsoft.Unity.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Microsoft.Unity.dll</HintPath>
     </Reference>
     <Reference Include="sage.platform, Version=7.5.2.2031, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Referenced Assemblies\sage.platform.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\sage.platform.dll</HintPath>
     </Reference>
     <Reference Include="Sage.Platform.Application, Version=7.5.2.2031, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Referenced Assemblies\Sage.Platform.Application.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Application.dll</HintPath>
     </Reference>
     <Reference Include="Sage.Platform.Application.UI.WinForms, Version=7.5.2.2031, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Referenced Assemblies\Sage.Platform.Application.UI.WinForms.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Application.UI.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Sage.Platform.Projects, Version=7.5.2.1990, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sage.Platform.Projects, Version=7.5.2.2031, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Referenced Assemblies\Sage.Platform.Projects.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Projects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -119,6 +113,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SmartParts\GitControlPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SmartParts\GitControlPanel.Designer.cs">
+      <DependentUpon>GitControlPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +148,9 @@
     <EmbeddedResource Include="FX.SalesLogix.Modules.GitExtensions.Configuration.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="SmartParts\GitControlPanel.resx">
+      <DependentUpon>GitControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +163,7 @@
     <Content Include="Resources\AboutImage.png" />
     <Content Include="Resources\AddImage.png" />
     <Content Include="Resources\BrowseImage.png" />
+    <Content Include="Resources\ControlHome.png" />
     <Content Include="Resources\FeedbackImage.png" />
     <Content Include="Resources\GitBashImage.png" />
     <Content Include="Resources\GitExtensionsImage.png" />
