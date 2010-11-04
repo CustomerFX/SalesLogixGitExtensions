@@ -90,7 +90,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         {
             if (!EnvironmentCheck()) return;
 
-			OutputMessage("Git commit", OutputLogType.Info, true);
+			OutputMessage(string.Format("Git commit to branch '{0}'", ExtensionsConnector.GetCurrentBranch()), OutputLogType.Info, true);
             ExtensionsConnector.Commit();
         }
 
@@ -169,7 +169,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         {
             if (!EnvironmentCheck()) return;
 
-			OutputMessage("Git checkout branch", OutputLogType.Info, true);
+			OutputMessage("Git checkout", OutputLogType.Info, true);
             ExtensionsConnector.Checkout();
 			OutputMessage("Reloading project workspace");
 			WorkspaceConnector.Reload();
