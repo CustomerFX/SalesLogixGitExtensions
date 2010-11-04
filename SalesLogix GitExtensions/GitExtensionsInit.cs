@@ -42,6 +42,13 @@ using FX.SalesLogix.Modules.GitExtensions.Connectors;
 
 namespace FX.SalesLogix.Modules.GitExtensions
 {
+	public enum OutputLogType
+	{
+		Info,
+		Error,
+		Warn
+	}
+
     public class GitExtensionsInit : ModuleInit<UIWorkItem>, IModuleConfigurationProvider
     {
         private IProjectContextService _projectContextService;
@@ -82,6 +89,8 @@ namespace FX.SalesLogix.Modules.GitExtensions
         public void GitCommitClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
+
+			OutputMessage("Git commit", OutputLogType.Info, true);
             ExtensionsConnector.Commit();
         }
 
@@ -89,16 +98,21 @@ namespace FX.SalesLogix.Modules.GitExtensions
         public void GitPullClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
+
+			OutputMessage("Git pull", OutputLogType.Info, true);
             ExtensionsConnector.Pull();
+			OutputMessage("Reloading project workspace");
             WorkspaceConnector.Reload();
 
-            MessageBox.Show("Your project workspace has been reloaded. Note: you will need to rebuild your web platform before you deploy.", "Pull Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            OutputMessage("Your project workspace has been reloaded. Note: you will need to rebuild your web platform before you deploy.");
         }
 
         [CommandHandler(Commands.Push)]
         public void GitPushClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
+
+			OutputMessage("Git push", OutputLogType.Info, true);
             ExtensionsConnector.Push();
         }
 
@@ -127,6 +141,8 @@ namespace FX.SalesLogix.Modules.GitExtensions
         public void GitStashClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
+
+			OutputMessage("Git stash", OutputLogType.Info, true);
             ExtensionsConnector.Stash();
         }
 
@@ -134,6 +150,8 @@ namespace FX.SalesLogix.Modules.GitExtensions
         public void GitAddClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
+
+			OutputMessage("Git add", OutputLogType.Info, true);
             ExtensionsConnector.Add();
         }
 
@@ -141,6 +159,8 @@ namespace FX.SalesLogix.Modules.GitExtensions
         public void GitBranchClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
+
+			OutputMessage("Git branch", OutputLogType.Info, true);
             ExtensionsConnector.Branch();
         }
 
@@ -148,24 +168,34 @@ namespace FX.SalesLogix.Modules.GitExtensions
         public void GitCheckoutClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
+
+			OutputMessage("Git checkout branch", OutputLogType.Info, true);
             ExtensionsConnector.Checkout();
+			OutputMessage("Reloading project workspace");
 			WorkspaceConnector.Reload();
 
-			MessageBox.Show("Your project workspace has been reloaded. Note: you may need to rebuild your web platform.", "Branch Checkout Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			OutputMessage("Your project workspace has been reloaded. Note: you will need to rebuild your web platform before you deploy.");
         }
 
         [CommandHandler(Commands.Merge)]
         public void GitMergeClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
+
+			OutputMessage("Git merge", OutputLogType.Info, true);
             ExtensionsConnector.Merge();
+			OutputMessage("Reloading project workspace");
 			WorkspaceConnector.Reload();
+
+			OutputMessage("Your project workspace has been reloaded. Note: you will need to rebuild your web platform before you deploy.");
         }
 
         [CommandHandler(Commands.ViewChanges)]
         public void GitViewChangesClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
+
+			OutputMessage("Git view changes", OutputLogType.Info, true);
             ExtensionsConnector.ViewChanges();
         }
 
@@ -173,6 +203,8 @@ namespace FX.SalesLogix.Modules.GitExtensions
         public void GitBashClick(object sender, EventArgs e)
         {
 			if (!EnvironmentCheck()) return;
+
+			OutputMessage("Starting Git bash", OutputLogType.Info, true);
             ExtensionsConnector.ShellBash();
         }
 
@@ -180,12 +212,14 @@ namespace FX.SalesLogix.Modules.GitExtensions
         public void GitIgnoreClick(object sender, EventArgs e)
         {
             if (!EnvironmentCheck()) return;
-
+			OutputMessage("", OutputLogType.Info, true);
+			
             if (!WorkspaceConnector.HasGitIgnore)
             {
                 switch (MessageBox.Show("Your current repository does not yet have a .gitignore file. Would you like to add the standard SalesLogix ignore entries?", "Add Standard SalesLogix Model Entries?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question))
                 {
                     case DialogResult.Yes:
+						OutputMessage("Creating standard gitignore");
                         WorkspaceConnector.AddStandardIgnore();
                         break;
                     case DialogResult.Cancel:
@@ -193,6 +227,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
                 }
             }
 
+			OutputMessage("Edit gitignore");
             ExtensionsConnector.EditGitIgnore();
         }
 
@@ -257,9 +292,12 @@ namespace FX.SalesLogix.Modules.GitExtensions
 
         private void NoExtensionsAction()
         {
+			string message = "Git Extensions is not installed. Git Extensions must be installed to use Git Extensions for SalesLogix.\r\n" +
+							 "To install Git Extensions visit: http://code.google.com/p/gitextensions/";
+
+			OutputMessage(message, OutputLogType.Error, true);
             MessageBox.Show(
-                            "Git Extensions is not installed. Git Extensions must be installed to use Git Extensions for SalesLogix.\r\n\r\n" + 
-                            "To install Git Extensions visit: http://code.google.com/p/gitextensions/",
+                            message,
                             "Git Extensions for SalesLogix",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Exclamation
@@ -268,31 +306,85 @@ namespace FX.SalesLogix.Modules.GitExtensions
 
         private void NoRepositoryAction()
         {
+			string message = "The current workspace directory '" + WorkspaceConnector.ProjectPathRoot + "' is not a Git repository.";
+
+			OutputMessage(message, OutputLogType.Warn, true);
             if (MessageBox.Show(
-                            "The current workspace directory '" + WorkspaceConnector.ProjectPathRoot + "' is not a Git repository.\r\n\r\nWould you like to make it a repository? (Note: this will also add the standard SalesLogix ignore entries to the .gitignore file)",
+                            message + "\r\n\r\nWould you like to make it a repository? (Note: this will also add the standard SalesLogix ignore entries to the .gitignore file)",
                             "Git Extensions for SalesLogix",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question
                             ) == DialogResult.Yes)
             {
 				_log.Info("Start process to create repo and .gitignore");
+				
+				OutputMessage("Creating Git repository for " + WorkspaceConnector.ProjectPathRoot);
                 ExtensionsConnector.Init();
+
+				OutputMessage("Creating standard SalesLogix model ignore file");
                 WorkspaceConnector.AddStandardIgnore();
             }
         }
 
         private void NoModelAction()
         {
-            MessageBox.Show(
-                            "This function is not available with a model in the VFS.\r\nExport your working model to work with source control.", 
-                            "Git Extensions for SalesLogix", 
+			string message = "This function is not available with a model in the VFS.\r\nExport your working model to work with source control.";
+
+			OutputMessage(message, OutputLogType.Warn, true);
+			MessageBox.Show(
+                            message, 
+							"Git Extensions for SalesLogix", 
                             MessageBoxButtons.OK, 
                             MessageBoxIcon.Exclamation
                             );
         }
 
+		private void OutputMessage(string Message)
+		{
+			OutputMessage(Message, OutputLogType.Info);
+		}
+
+		private void OutputMessage(string Message, OutputLogType OutputType)
+		{
+			OutputMessage(Message, OutputType, false);
+		}
+
+		private void OutputMessage(string Message, OutputLogType OutputType, bool InitOutput)
+		{
+			IOutputWindowLog log = Sage.Platform.Application.ApplicationContext.Current.Services.Get<IOutputWindowService>().Get("default");
+
+			if (InitOutput)
+			{
+				this.ModuleWorkItem.Commands["cmd://IDE/ShowOutputWindow"].Execute();
+				log.Activate();
+				log.Clear();
+
+				log.LogInformation("Git Extensions for SalesLogix\r\n");
+				log.LogInformation("Copyright © 2010 Customer FX Corporation - http://customerfx.com/\r\n");
+				log.LogInformation("---\r\n");
+			}
+
+			DateTime logStamp = DateTime.Now;
+			if (Message.Trim() == string.Empty) return;
+			Message = Message.Replace("\r\n", string.Format("\r\n{0} {1} ", OutputType.ToString().ToUpper(), logStamp));
+
+			switch (OutputType)
+			{
+				case OutputLogType.Warn:
+					log.LogWarning(string.Format("WARN {0} {1}\r\n", logStamp, Message));
+					break;
+				case OutputLogType.Error:
+					log.LogError(string.Format("ERROR {0} {1}\r\n", logStamp, Message));
+					break;
+				default:
+					log.LogInformation(string.Format("INFO {0} {1}\r\n", logStamp, Message));
+					break;
+			}
+		}
+
         private void ShowExceptionMessage(Exception exception)
         {
+			OutputMessage(exception.Message, OutputLogType.Error);
             MessageBox.Show(exception.Message, "Git Extensions for SalesLogix", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 

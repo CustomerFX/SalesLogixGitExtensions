@@ -144,7 +144,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FX.SalesLogix.Modules.GitExtensions.Configuration.xml" />
+    <EmbeddedResource Include="FX.SalesLogix.Modules.GitExtensions.Configuration.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
