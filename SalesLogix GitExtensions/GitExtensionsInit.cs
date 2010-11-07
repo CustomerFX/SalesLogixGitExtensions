@@ -195,7 +195,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         {
             if (!EnvironmentCheck()) return;
 
-			OutputMessage("Git branch", OutputLogType.Info, true);
+			OutputMessage("Git create branch", OutputLogType.Info, true);
             ExtensionsConnector.Branch();
         }
 
@@ -204,7 +204,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         {
             if (!EnvironmentCheck()) return;
 
-			OutputMessage("Git checkout", OutputLogType.Info, true);
+			OutputMessage("Git checkout branch", OutputLogType.Info, true);
             ExtensionsConnector.Checkout();
 			OutputMessage("Reloading project workspace");
 			WorkspaceConnector.Reload();
@@ -217,7 +217,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         {
             if (!EnvironmentCheck()) return;
 
-			OutputMessage("Git merge", OutputLogType.Info, true);
+			OutputMessage("Git merge branch", OutputLogType.Info, true);
             ExtensionsConnector.Merge();
 			OutputMessage("Reloading project workspace");
 			WorkspaceConnector.Reload();
