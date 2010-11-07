@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Sage.Platform.Application.UI;
 using Sage.Platform.Application;
 using Sage.Platform.Application.UI.WinForms;
+using FX.SalesLogix.Modules.GitExtensions.Constants;
 
 namespace FX.SalesLogix.Modules.GitExtensions.SmartParts
 {
@@ -56,5 +57,35 @@ namespace FX.SalesLogix.Modules.GitExtensions.SmartParts
 		}
 
 		#endregion
+
+		private void buttonCommit_Click(object sender, EventArgs e)
+		{
+			this.ModuleWorkItem.Commands[Commands.Commit].Execute();
+			this.ModuleWorkItem.Commands[Commands.ShowControlPanel].Execute();
+		}
+
+		private void buttonPush_Click(object sender, EventArgs e)
+		{
+			this.ModuleWorkItem.Commands[Commands.Push].Execute();
+			this.ModuleWorkItem.Commands[Commands.ShowControlPanel].Execute();
+		}
+
+		private void buttonPull_Click(object sender, EventArgs e)
+		{
+			this.ModuleWorkItem.Commands[Commands.Pull].Execute();
+			this.ModuleWorkItem.Commands[Commands.ShowControlPanel].Execute();
+		}
+
+		private void buttonCreateBranch_Click(object sender, EventArgs e)
+		{
+			this.ModuleWorkItem.Commands[Commands.Branch].Execute();
+			this.ModuleWorkItem.Commands[Commands.ShowControlPanel].Execute();
+		}
+
+		private void buttonMergeBranch_Click(object sender, EventArgs e)
+		{
+			this.ModuleWorkItem.Commands[Commands.Merge].Execute();
+			this.ModuleWorkItem.Commands[Commands.ShowControlPanel].Execute();
+		}
 	}
 }
