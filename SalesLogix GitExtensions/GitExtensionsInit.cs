@@ -90,7 +90,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         {
             if (!EnvironmentCheck()) return;
 
-			OutputMessage("Git commit", OutputLogType.Info, true);
+			OutputMessage(string.Format("Git commit to branch '{0}'", ExtensionsConnector.GetCurrentBranch()), OutputLogType.Info, true);
             ExtensionsConnector.Commit();
         }
 
@@ -169,7 +169,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         {
             if (!EnvironmentCheck()) return;
 
-			OutputMessage("Git checkout branch", OutputLogType.Info, true);
+			OutputMessage("Git checkout", OutputLogType.Info, true);
             ExtensionsConnector.Checkout();
 			OutputMessage("Reloading project workspace");
 			WorkspaceConnector.Reload();
@@ -352,34 +352,38 @@ namespace FX.SalesLogix.Modules.GitExtensions
 		private void OutputMessage(string Message, OutputLogType OutputType, bool InitOutput)
 		{
 			IOutputWindowLog log = Sage.Platform.Application.ApplicationContext.Current.Services.Get<IOutputWindowService>().Get("default");
+			if (log == null) return;
 
-			if (InitOutput)
+			try
 			{
-				this.ModuleWorkItem.Commands["cmd://IDE/ShowOutputWindow"].Execute();
-				log.Activate();
-				log.Clear();
+				if (InitOutput)
+				{
+					this.ModuleWorkItem.Commands["cmd://IDE/ShowOutputWindow"].Execute();
+					log.Activate();
+					log.Clear();
 
-				log.LogInformation("Git Extensions for SalesLogix\r\n");
-				log.LogInformation("Copyright © 2010 Customer FX Corporation - http://customerfx.com/\r\n");
-				log.LogInformation("---\r\n");
+					log.LogInformation("Git Extensions for SalesLogix\r\n");
+					log.LogInformation("Copyright © 2010 Customer FX Corporation - http://customerfx.com/\r\n");
+					log.LogInformation("---\r\n");
+				}
+
+				if (Message.Trim() == string.Empty) return;
+				Message = Message.Replace("\r\n", string.Format("\r\n{0} ", OutputType.ToString().ToUpper()));
+
+				switch (OutputType)
+				{
+					case OutputLogType.Warn:
+						log.LogWarning(string.Format("WARN {0}\r\n", Message));
+						break;
+					case OutputLogType.Error:
+						log.LogError(string.Format("ERROR {0}\r\n", Message));
+						break;
+					default:
+						log.LogInformation(string.Format("INFO {0}\r\n", Message));
+						break;
+				}
 			}
-
-			DateTime logStamp = DateTime.Now;
-			if (Message.Trim() == string.Empty) return;
-			Message = Message.Replace("\r\n", string.Format("\r\n{0} {1} ", OutputType.ToString().ToUpper(), logStamp));
-
-			switch (OutputType)
-			{
-				case OutputLogType.Warn:
-					log.LogWarning(string.Format("WARN {0} {1}\r\n", logStamp, Message));
-					break;
-				case OutputLogType.Error:
-					log.LogError(string.Format("ERROR {0} {1}\r\n", logStamp, Message));
-					break;
-				default:
-					log.LogInformation(string.Format("INFO {0} {1}\r\n", logStamp, Message));
-					break;
-			}
+			catch { }
 		}
 
         private void ShowExceptionMessage(Exception exception)

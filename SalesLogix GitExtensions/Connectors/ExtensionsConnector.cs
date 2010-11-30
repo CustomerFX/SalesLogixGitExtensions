@@ -37,6 +37,9 @@ using System.IO;
 using System.Diagnostics;
 using Microsoft.Win32;
 using log4net;
+using System.Security.Permissions;
+using System.ComponentModel;
+using FX.SalesLogix.Modules.GitExtensions.Model;
 
 namespace FX.SalesLogix.Modules.GitExtensions.Connectors
 {
@@ -114,6 +117,31 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
                 return path;
             }
         }
+
+		public static string GitCommand
+		{
+			get
+			{
+				string path = string.Empty;
+				try
+				{
+					RegistryKey key = null;
+					key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions\1.0.0.0", false);
+					if (key != null)
+					{
+						object o = key.GetValue("gitdir");
+						if (o != null)
+						{
+							path = o.ToString();
+							if (!File.Exists(o.ToString())) path = string.Empty;
+						}
+					}
+				}
+				catch { }
+				_log.Info("Git command: " + path);
+				return path;
+			}
+		}
 
         public static void Show()
         {
@@ -251,6 +279,29 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
             catch { throw; }
         }
 
+		public static string GetCurrentBranch()
+		{
+			List<Branch> branches = GetBranches();
+			foreach (Branch branch in branches)
+				if (branch.Current) return branch.Name;
+
+			return string.Empty;
+		}
+
+		public static List<Branch> GetBranches()
+		{
+			List<Branch> list = new List<Branch>();
+
+			string branches = ShellGitCommand("branch");
+			string[] branchStrings = branches.Split('\n');
+			foreach (string branch in branchStrings)
+			{
+				list.Add(new Branch(branch.Trim('*', ' '), (branch.IndexOf('*') > -1)));
+			}
+			
+			return list;
+		}
+
         public static void ShellCommand(string command)
         {
             try
@@ -318,6 +369,70 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
             }
             catch { throw; }
         }
+
+		[PermissionSetAttribute(SecurityAction.Demand, Name = "FullTrust")]
+		public static string ShellGitCommand(string command)
+		{
+			try
+			{
+				string gitcmd = GitCommand;
+
+				command = command.Replace("$QUOTE$", "\\\"");
+
+				string output, error;
+				CreateAndStartProcess(command, gitcmd, out output, out error);
+
+				if (!string.IsNullOrEmpty(error))
+				{
+					output += Environment.NewLine + error;
+				}
+				_log.Info("Command " + command + " executed");
+				return output;
+			}
+			catch (Win32Exception)
+			{
+				return string.Empty;
+			}
+		}
+
+		private static void CreateAndStartProcess(string argument, string cmd)
+		{
+			string stdOutput, stdError;
+			CreateAndStartProcess(argument, cmd, out stdOutput, out stdError);
+		}
+
+		private static void CreateAndStartProcess(string arguments, string cmd, out string stdOutput, out string stdError)
+		{
+			//process used to execute external commands
+
+			var startInfo = CreateProcessStartInfo();
+			startInfo.CreateNoWindow = true;
+			startInfo.FileName = cmd;
+			startInfo.Arguments = arguments;
+			startInfo.WorkingDirectory = WorkspaceConnector.ProjectPathRoot;
+			startInfo.LoadUserProfile = true;
+
+			using (var process = Process.Start(startInfo))
+			{
+				stdOutput = process.StandardOutput.ReadToEnd();
+				stdError = process.StandardError.ReadToEnd();
+				process.WaitForExit();
+			}
+		}
+
+		internal static ProcessStartInfo CreateProcessStartInfo()
+		{
+			return new ProcessStartInfo()
+			{
+				UseShellExecute = false,
+				ErrorDialog = false,
+				RedirectStandardOutput = true,
+				RedirectStandardInput = true,
+				RedirectStandardError = true,
+				StandardOutputEncoding = new System.Text.UTF8Encoding(),
+				StandardErrorEncoding = new System.Text.UTF8Encoding()
+			};
+		}
     }
 }
 
