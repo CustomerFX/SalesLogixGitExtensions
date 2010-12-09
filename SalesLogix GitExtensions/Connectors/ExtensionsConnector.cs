@@ -129,7 +129,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
 					key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions\1.0.0.0", false);
 					if (key != null)
 					{
-						object o = key.GetValue("gitdir");
+						//object o = key.GetValue("gitdir");
+						object o = key.GetValue("gitcommand");
 						if (o != null)
 						{
 							path = o.ToString();
