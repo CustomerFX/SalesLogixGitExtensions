@@ -134,7 +134,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
 						if (o != null)
 						{
 							path = o.ToString();
-							if (!File.Exists(o.ToString())) path = string.Empty;
+							//if (!File.Exists(o.ToString())) path = string.Empty;
 						}
 					}
 				}
