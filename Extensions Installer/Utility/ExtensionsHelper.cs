@@ -58,26 +58,41 @@ namespace FX.SalesLogix.Modules.GitExtensions.Installer.Utility
 
         public static string ExtensionsPath
         {
-            get
-            {
-                string path = string.Empty;
-                try
-                {
-                    RegistryKey key = null;
-                    key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions\1.0.0.0", false);
-                    if (key != null)
-                    {
-                        object o = key.GetValue("InstallDir");
-                        if (o != null)
-                        {
-                            path = o.ToString();
-                            if (!Directory.Exists(o.ToString())) path = string.Empty;
-                        }
-                    }
-                }
-                catch { }
-                return path;
-            }
+			get
+			{
+				string path = string.Empty;
+				path = GetConfigValue("InstallDir");
+
+				if (string.IsNullOrEmpty(path)) path = GetConfigValue("InstallDir", true);
+				if (!Directory.Exists(path)) path = string.Empty;
+
+				return path;
+			}
         }
+
+		public static string GetConfigValue(string ConfigName)
+		{
+			return GetConfigValue(ConfigName, false);
+		}
+
+		public static string GetConfigValue(string ConfigName, bool UseLegacy)
+		{
+			string val = string.Empty;
+			try
+			{
+				RegistryKey key = null;
+				key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions" + (UseLegacy ? @"\1.0.0.0" : ""), false);
+				if (key != null)
+				{
+					object o = key.GetValue(ConfigName);
+					if (o != null)
+					{
+						val = o.ToString();
+					}
+				}
+			}
+			catch { }
+			return val;
+		}
     }
 }
