@@ -69,24 +69,14 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
         {
             get
             {
-                string path = string.Empty;
-                try
-                {
-                    RegistryKey key = null;
-                    key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions\1.0.0.0", false);
-                    if (key != null)
-                    {
-                        object o = key.GetValue("InstallDir");
-                        if (o != null)
-                        {
-                            path = o.ToString();
-                            if (!Directory.Exists(o.ToString())) path = string.Empty;
-                        }
-                    }
-                }
-                catch { }
+				string path = string.Empty;
+				path = GetConfigValue("InstallDir");
+
+				if (string.IsNullOrEmpty(path)) path = GetConfigValue("InstallDir", true);
+				if (!Directory.Exists(path)) path = string.Empty;
+
 				_log.Info("Extensions path: " + path);
-                return path;
+				return path;
             }
         }
 
@@ -94,27 +84,18 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
         {
             get
             {
-                string path = string.Empty;
-                try
-                {
-                    RegistryKey key = null;
-                    key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions\1.0.0.0", false);
-                    if (key != null)
-                    {
-                        object o = key.GetValue("gitbindir");
-                        if (o != null)
-                        {
-                            path = o.ToString();
-                            if (!Directory.Exists(o.ToString()))
-                                path = string.Empty;
-                            else
-                                path = Path.Combine(path, "sh.exe");
-                        }
-                    }
-                }
-                catch { }
+				string path = string.Empty;
+				path = GetConfigValue("gitbindir");
+
+				if (string.IsNullOrEmpty(path)) path = GetConfigValue("gitbindir", true);
+
+				if (!Directory.Exists(path))
+					path = string.Empty;
+				else
+					path = Path.Combine(path, "sh.exe");
+
 				_log.Info("Bash path: " + path);
-                return path;
+				return path;
             }
         }
 
@@ -123,25 +104,38 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
 			get
 			{
 				string path = string.Empty;
-				try
-				{
-					RegistryKey key = null;
-					key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions\1.0.0.0", false);
-					if (key != null)
-					{
-						//object o = key.GetValue("gitdir");
-						object o = key.GetValue("gitcommand");
-						if (o != null)
-						{
-							path = o.ToString();
-							//if (!File.Exists(o.ToString())) path = string.Empty;
-						}
-					}
-				}
-				catch { }
+				path = GetConfigValue("gitcommand");
+
+				if (string.IsNullOrEmpty(path)) path = GetConfigValue("gitcommand", true);
+
 				_log.Info("Git command: " + path);
 				return path;
 			}
+		}
+
+		public static string GetConfigValue(string ConfigName)
+		{
+			return GetConfigValue(ConfigName, false);
+		}
+
+		public static string GetConfigValue(string ConfigName, bool UseLegacy)
+		{
+			string val = string.Empty;
+			try
+			{
+				RegistryKey key = null;
+				key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions" + (UseLegacy ? @"\1.0.0.0" : ""), false);
+				if (key != null)
+				{
+					object o = key.GetValue(ConfigName);
+					if (o != null)
+					{
+						val = o.ToString();
+					}
+				}
+			}
+			catch { }
+			return val;
 		}
 
         public static void Show()
