@@ -33,12 +33,12 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://www.cfxconnect.com/applications/SalesLogixGitExtensions/</InstallUrl>
-    <SupportUrl>http://portal.customerfx.com/</SupportUrl>
+    <SupportUrl>http://www.customerfx.com/</SupportUrl>
     <ProductName>Git Extensions for SalesLogix</ProductName>
     <PublisherName>Customer FX Corporation</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

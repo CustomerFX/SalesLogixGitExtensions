@@ -363,7 +363,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
 					log.Clear();
 
 					log.LogInformation("Git Extensions for SalesLogix\r\n");
-					log.LogInformation("Copyright © 2010 Customer FX Corporation - http://customerfx.com/\r\n");
+					log.LogInformation("Copyright © 2012 Customer FX Corporation - http://customerfx.com/\r\n");
 					log.LogInformation("---\r\n");
 				}
 
