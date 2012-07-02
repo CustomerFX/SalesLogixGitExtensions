@@ -133,7 +133,7 @@ namespace FX.SalesLogix.Modules.GitExtensions
         [CommandHandler(Commands.Browse)]
         public void GitBrowseClick(object sender, EventArgs e)
         {
-            if (!WorkspaceConnector.IsRepository) { NoRepositoryAction(); return; }
+			if (!EnvironmentCheck()) return;
             ExtensionsConnector.Browse();
         }
 

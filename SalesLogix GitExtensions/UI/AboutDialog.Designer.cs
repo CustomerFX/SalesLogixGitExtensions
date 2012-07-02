@@ -138,8 +138,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.UI
 			this.label2.Size = new System.Drawing.Size(374, 52);
 			this.label2.TabIndex = 4;
 			this.label2.Text = "Git Extensions for SalesLogix integrates Git Extensions into the SalesLogix Appli" +
-				"cation Architect to allow you to easily use Git for SalesLogix development proje" +
-				"cts.";
+    "cation Architect to allow you to easily use Git for SalesLogix development proje" +
+    "cts.";
 			// 
 			// labelGitExtVersionText
 			// 
@@ -192,7 +192,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.UI
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(386, 13);
 			this.label4.TabIndex = 9;
-			this.label4.Text = "Git Extensions for SalesLogix is Copyright © 2009-2010 Customer FX Corporation";
+			this.label4.Text = "Git Extensions for SalesLogix is Copyright © 2009-2012 Customer FX Corporation";
 			// 
 			// label5
 			// 
@@ -226,8 +226,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.UI
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Location = new System.Drawing.Point(38, 229);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(380, 2);
@@ -236,8 +236,8 @@ namespace FX.SalesLogix.Modules.GitExtensions.UI
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Location = new System.Drawing.Point(38, 301);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(380, 2);
