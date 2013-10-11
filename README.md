@@ -1,10 +1,10 @@
-<img src="http://cloud.github.com/downloads/CustomerFX/SalesLogixGitExtensions/logo.png">
+<img src="http://customerfx.com/blogs/crmdeveloper/logo.png">
 
 <h1>Git Extensions for SalesLogix</h1>
 
 Git Extensions for SalesLogix is an addin for the SalesLogix Application Architect that integrates <a href="http://code.google.com/p/gitextensions/" target=_blank>Git Extensions</a> into Application Architect and provide all basic Git functionality into working with SalesLogix models & customizations. In order to use "Git Extensions for SalesLogix" you must have "Git Extensions" installed. For more information see <a href="http://customerfx.com/pages/crmdeveloper/2009/10/14/announcing-git-extensions-for-saleslogix-and-the-customer-fx-open-source-initiative.aspx" target=_blank>Announcing Git Extensions for SalesLogix and the Customer FX Open Source Initiative</a>. To install Git Extensions for SalesLogix see the <a href="http://wiki.github.com/CustomerFX/SalesLogixGitExtensions/installation" target=_blank>Installation page</a> of the project Wiki. 
 
-<a href="http://cloud.github.com/downloads/CustomerFX/SalesLogixGitExtensions/GitExtensionsForSalesLogix_CompleteWithMenu.png" target=_blank>See a screenshot</a> or <a href="http://www.screencast.com/users/RyanFarley/folders/Default/media/3e0ce61c-9c83-4539-b26e-05b2e0c4476f" target=_blank>watch a video overview</a>.
+<a href="http://customerfx.com/blogs/crmdeveloper/GitExtensionsForSalesLogix_CompleteWithMenu2.png" target=_blank>See a screenshot</a> or <a href="http://www.screencast.com/users/RyanFarley/folders/Default/media/3e0ce61c-9c83-4539-b26e-05b2e0c4476f" target=_blank>watch a video overview</a>.
 
 <h1>Git Extensions</h1>
 
