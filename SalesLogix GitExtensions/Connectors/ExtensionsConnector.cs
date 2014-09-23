@@ -73,7 +73,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
                 try
                 {
                     RegistryKey key = null;
-                    key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions\1.0.0.0", false);
+                    key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions", false);
                     if (key != null)
                     {
                         object o = key.GetValue("InstallDir");
@@ -98,7 +98,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
                 try
                 {
                     RegistryKey key = null;
-                    key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions\1.0.0.0", false);
+                    key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions", false);
                     if (key != null)
                     {
                         object o = key.GetValue("gitbindir");
@@ -126,7 +126,7 @@ namespace FX.SalesLogix.Modules.GitExtensions.Connectors
 				try
 				{
 					RegistryKey key = null;
-					key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions\GitExtensions\1.0.0.0", false);
+					key = Registry.CurrentUser.OpenSubKey(@"Software\GitExtensions", false);
 					if (key != null)
 					{
 						object o = key.GetValue("gitdir");
